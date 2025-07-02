@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "id": "ce76",
+      "name": "Nezrin",
+      "email": "nezrinrustamova454@gmail.com",
+      "password": "123456hj",
+      "orgname": "Nezrin Tech",
+      "orgnumber": "994553892312",
+      "orgaddress": "Yasamal raion",
+      "orgId": "428cbc7e-f9ae-4e3b-8f8f-f6f6556efb63",
+      "role": "admin"
+    }
+  ],
+  "tasks": []
+}
