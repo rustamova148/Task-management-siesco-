@@ -10,6 +10,17 @@
       "orgaddress": "Yasamal raion",
       "orgId": "428cbc7e-f9ae-4e3b-8f8f-f6f6556efb63",
       "role": "admin"
+    },
+    {
+      "id": "2534",
+      "name": "Melek",
+      "email": "melek77@gmail.com",
+      "password": "1234567ghj",
+      "orgname": "Angel Inc",
+      "orgnumber": "994557892451",
+      "orgaddress": "Narimanov raion",
+      "orgId": "18782fda-bb9c-481a-a7d9-e69f76068c3f",
+      "role": "admin"
     }
   ],
   "tasks": []

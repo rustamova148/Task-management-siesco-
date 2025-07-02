@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import styles from './Signin.module.css'
+import { useDispatch } from "react-redux";
+import { setUser } from "../../redux/features/user/userSlice";
 
 const Signin = () => {
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
 const navigate = useNavigate();
+const dispatch = useDispatch();
 
 const handleChange1 = (e: React.ChangeEvent<HTMLInputElement>) => {
 setEmail(e.target.value);
@@ -27,6 +29,7 @@ try {
   if(data.length > 0){
     const user = data[0];
     localStorage.setItem("user", JSON.stringify(user));
+    dispatch(setUser(user));
     navigate('/userdash');
     alert('Uğurla hesabınıza daxil oldunuz')
   }else{
