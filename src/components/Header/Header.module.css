@@ -1,6 +1,6 @@
 .header_container{
     width: 100%;
-    height: 60px;
+    height: 68px;
     border-bottom: 1px solid rgb(175, 175, 175);
     margin-bottom: 30px;
     display: flex;
@@ -10,4 +10,37 @@
 }
 .header_head{
     font-size: 25px;
+}
+.profile_info{
+    display: flex;
+    flex-direction: column;
+}
+.profile_info span:first-child{
+    font-weight: 600;
+    font-size: 20px;
+}
+.profile_info span:nth-child(2){
+    color: rgb(109, 108, 108);
+}
+.profile_photo{
+    border: 1px solid rgb(92, 92, 92);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+.profilebox{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.logout_btn{
+    background-color: #5ca088;
+    border: 1px solid rgb(158, 158, 158);
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    border-radius: 6px;
+    color: white;
 }
