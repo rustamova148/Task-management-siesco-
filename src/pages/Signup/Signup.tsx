@@ -119,7 +119,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
           />
         </div>
         <br />
-        <a href="/#/signin">Sign in</a> <br /> <br />
+        <a href="/#/signin">Daxil olun</a> <br /> <br />
         <button type="submit">Sign up</button>
       </form>
     </div>
