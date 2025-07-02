@@ -30,8 +30,8 @@ try {
     const user = data[0];
     localStorage.setItem("user", JSON.stringify(user));
     dispatch(setUser(user));
+    alert('Uğurla hesabınıza daxil oldunuz');
     navigate('/userdash');
-    alert('Uğurla hesabınıza daxil oldunuz')
   }else{
     alert('Belə bir istifadəçi tapılmadı');
   }
