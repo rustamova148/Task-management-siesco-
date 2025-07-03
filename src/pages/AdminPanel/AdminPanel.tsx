@@ -1,37 +1,36 @@
-// import { useState, useEffect } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "../../components/Header/Header";
 import styles from "./AdminPanel.module.css";
 import UsersModalWrapper from "../../components/UsersModalWrapper/UsersModalWrapper";
 
+export interface User {
+    id: number;
+    name: string;
+    email: string;
+    password: string;
+    orgname: string;
+    orgnumber: number;
+    orgaddress: string;
+    orgId: number;
+    role: string;
+}
+
 const AdminPanel = () => {
 const [userModal, setUserModal] = useState(false);
-// const [users, setUsers] = useState<User[]>([]);
+const [users, setUsers] = useState<User[]>([]);
 
-  // interface User {
-  //   id: number;
-  //   name: string;
-  //   email: string;
-  //   password: string;
-  //   orgname: string;
-  //   orgnumber: number;
-  //   orgaddress: string;
-  //   orgId: number;
-  //   role: string;
-  // }
-
-  // useEffect(() => {
-  //   const fetchUsers = async () => {
-  //     try {
-  //       const res = await fetch("http://localhost:3001/users");
-  //       const data = await res.json();
-  //       setUsers(data);
-  //     } catch (error) {
-  //       console.error("Error fetching users:", error);
-  //     }
-  //   };
-  //   fetchUsers();
-  // }, []);
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const res = await fetch("http://localhost:3001/users");
+        const data = await res.json();
+        setUsers(data);
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      }
+    };
+    fetchUsers();
+  }, []);
 
   const showUserModal = () => {
       setUserModal(true);
@@ -51,18 +50,18 @@ const [userModal, setUserModal] = useState(false);
               <th>User email</th>
             </tr>
           </thead>
-          {/* <tbody>
-            {users.map((user) => (
+          <tbody>
+            {users.filter(u => u.role === 'user').map((user) => (
               <tr key={user.id}>
                 <td>{user.orgname}</td>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
               </tr>
             ))}
-          </tbody> */}
+          </tbody>
         </table>
       </div>
-      {userModal && <UsersModalWrapper setUserModal={setUserModal} />}
+      {userModal && <UsersModalWrapper setUserModal={setUserModal} setUsers={setUsers} />}
     </div>
   );
 };
