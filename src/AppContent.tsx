@@ -5,7 +5,7 @@ import { setUser } from './redux/features/user/userSlice';
 import {Routes, Route} from 'react-router-dom';
 import Signin from './pages/Signin/Signin';
 import Signup from './pages/Signup/Signup';
-import AdminPanel from './pages/AdminPanel';
+import AdminPanel from './pages/AdminPanel/AdminPanel';
 import UserDashboard from './pages/UserDashboard/UserDashboard';
 
 const AppContent = () => {
@@ -15,7 +15,11 @@ useEffect(() => {
 const storedUser = localStorage.getItem("user");
 if(storedUser){
   dispatch(setUser(JSON.parse(storedUser)));
+  if(JSON.parse(storedUser).role === 'admin'){
+  navigate('adminpanel');
+  }else{
   navigate('/userdash');
+  }
 }else{
   navigate('/signin');
 }

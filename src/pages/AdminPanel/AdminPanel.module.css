@@ -1,0 +1,34 @@
+.admin_panel_container{
+    position: relative;
+}
+.admin_table_container{
+    width: 100%;
+    /* min-height: 78vh; */
+    display: flex;
+    justify-content: center;
+}
+.adduserbtn{
+    margin-left: 70px;
+    padding: 12px 20px;
+    background-color: rgb(129, 129, 236);
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.admin_table{
+    width: 90%;
+    border-collapse: collapse;
+    border: 1px solid gray;
+    margin-top: 20px;
+    font-size: 18px;
+}
+.admin_table th,
+.admin_table td{
+    border: 1px solid gray;
+    width: 30%;
+    padding: 8px;
+    height: 10px;
+    text-align: center;
+    vertical-align: middle;
+}

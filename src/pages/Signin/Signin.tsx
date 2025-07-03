@@ -31,7 +31,11 @@ try {
     localStorage.setItem("user", JSON.stringify(user));
     dispatch(setUser(user));
     alert('Uğurla hesabınıza daxil oldunuz');
-    navigate('/userdash');
+    if(user.role === 'admin'){
+      navigate('/adminpanel');
+    }else{
+      navigate('/userdash');
+    }
   }else{
     alert('Belə bir istifadəçi tapılmadı');
   }
