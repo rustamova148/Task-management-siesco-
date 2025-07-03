@@ -14,17 +14,17 @@
     {
       "id": "610b",
       "orgname": "Nezrin Tech",
-      "name": "Lale",
-      "email": "lale67@gmail.com",
-      "password": "lale123456",
+      "name": "Farida",
+      "email": "farida67@gmail.com",
+      "password": "farida123456",
       "role": "user"
     },
     {
-      "id": "89cc",
+      "id": "aa23",
       "orgname": "Nezrin Tech",
-      "name": "Jale",
-      "email": "jale999@gmail.com",
-      "password": "jale123456",
+      "name": "Nergiz",
+      "email": "nergiz999@gmail.com",
+      "password": "nergiz123456",
       "role": "user"
     }
   ],

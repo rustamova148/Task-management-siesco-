@@ -1,9 +1,18 @@
 .admin_panel_container{
     position: relative;
 }
+.general_container{
+    display: flex;
+}
+.tables_part_container{
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    margin-left: 100px;
+    align-items: end;
+}
 .admin_table_container{
     width: 100%;
-    /* min-height: 78vh; */
     display: flex;
     justify-content: center;
 }
@@ -46,17 +55,16 @@
     border: 1px solid rgb(175, 175, 175);
     z-index: 99;
     position: absolute;
-    left: 60px;
-    top: 25px;
+    left: 45px;
+    top: 22px;
     list-style-type: none;
 }
 .actions_option{
     width: 100%;
-    padding: 6px;
+    padding: 6px 13px;
     font-size: 15px;
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 10px;
     border: none;
     background-color: white;
@@ -72,4 +80,10 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
+}
+.delete_icon{
+    color: red !important;
+}
+.edit_icon{
+    color: purple !important;
 }

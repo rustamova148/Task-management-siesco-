@@ -1,24 +1,27 @@
 import { useState, useEffect } from "react";
-import Header from "../../components/Header/Header";
+import Sidebar from "../../components/Sidebar/Sidebar";
 import styles from "./AdminPanel.module.css";
 import UsersModalWrapper from "../../components/UsersModalWrapper/UsersModalWrapper";
+import EditModalWrapper from "../../components/EditModalWrapper/EditModalWrapper";
 
 export interface User {
-    id: number;
-    name: string;
-    email: string;
-    password: string;
-    orgname: string;
-    orgnumber: number;
-    orgaddress: string;
-    orgId: number;
-    role: string;
+  id: number;
+  name: string;
+  email: string;
+  password: string;
+  orgname: string;
+  orgnumber: number;
+  orgaddress: string;
+  orgId: number;
+  role: string;
 }
 
 const AdminPanel = () => {
-const [userModal, setUserModal] = useState(false);
-const [users, setUsers] = useState<User[]>([]);
-const [openMenuId, setOpenMenuId] = useState<number | null>(null);
+  const [userModal, setUserModal] = useState(false);
+  const [editModal, setEditModal] = useState(false);
+  const [users, setUsers] = useState<User[]>([]);
+  const [openMenuId, setOpenMenuId] = useState<number | null>(null);
+  const [editUserId, setEditUserId] = useState<number | null>(null);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -34,82 +37,101 @@ const [openMenuId, setOpenMenuId] = useState<number | null>(null);
   }, []);
 
   const showUserModal = () => {
-      setUserModal(true);
+    setUserModal(true);
+  };
+  const showEditModal = (id:number) => {
+    setEditModal(true);
+    setEditUserId(id);
   }
   const toggleMenu = (id: number) => {
     setOpenMenuId((prev) => (prev === id ? null : id));
-  }
-  const handleDeleteUser = async (id:number) => {
-    try{
-     const res = await fetch(`http://localhost:3001/users/${id}`,{
-      method: "DELETE",
-     });
+  };
+  const handleDeleteUser = async (id: number) => {
+    try {
+      const res = await fetch(`http://localhost:3001/users/${id}`, {
+        method: "DELETE",
+      });
 
-     if(res.ok){
-      setUsers((prev) => prev.filter(user => user.id !== id));
-      setOpenMenuId(null);
-     }else{
-      alert("Error when deleting user");
-     }
-    }catch(error){
+      if (res.ok) {
+        setUsers((prev) => prev.filter((user) => user.id !== id));
+        setOpenMenuId(null);
+      } else {
+        alert("Error when deleting user");
+      }
+    } catch (error) {
       alert("No connection with server");
       console.error("Error deleting user:", error);
     }
-  }
+  };
   return (
     <div className={styles.admin_panel_container}>
-      <Header />
-      <button className={styles.adduserbtn} onClick={showUserModal}>
-        Add user
-      </button>
-      <div className={styles.admin_table_container}>
-        <table className={styles.admin_table}>
-          <thead>
-            <tr>
-              <th>Organization name</th>
-              <th>User name</th>
-              <th>User email</th>
-              <th>User password</th>
-              <th>Role</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((user) => (
-              <tr key={user.id}>
-                <td>{user.orgname}</td>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td>{user.password}</td>
-                <td>{user.role}</td>
-                <td className={styles.actions_td}>
-                  <button className={styles.actions_btn} onClick={() => toggleMenu(user.id)}>
-                    <i className={`fa-solid fa-ellipsis ${styles.icon}`}></i>
-                  </button>
-                  {openMenuId === user.id && (
-                  <ul className = {styles.actions_options}>
-                    <li>
-                      <button className={styles.actions_option}>
-                      <i className="fa-solid fa-pen"></i>
-                      <span>Edit</span>
-                      </button>
-                    </li>
-                    <li>
-                      <button className={styles.actions_option} onClick={() => handleDeleteUser(user.id)}>
-                      <i className="fa-solid fa-trash"></i>
-                      <span>Delete</span>
-                      </button>
-                    </li>
-                  </ul>
-                )}
-                </td>
-
+      <div className={styles.general_container}>
+      <Sidebar />
+      <div className={styles.tables_part_container}>
+        <button className={styles.adduserbtn} onClick={showUserModal}>
+          Add user
+        </button>
+        <div className={styles.admin_table_container}>
+          <table className={styles.admin_table}>
+            <thead>
+              <tr>
+                <th>Organization name</th>
+                <th>User name</th>
+                <th>User email</th>
+                <th>User password</th>
+                <th>Role</th>
+                <th>Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {users.map((user) => (
+                <tr key={user.id}>
+                  <td>{user.orgname}</td>
+                  <td>{user.name}</td>
+                  <td>{user.email}</td>
+                  <td>{user.password}</td>
+                  <td>{user.role}</td>
+                  <td className={styles.actions_td}>
+                    <button
+                      className={styles.actions_btn}
+                      onClick={() => toggleMenu(user.id)}
+                    >
+                      <i className={`fa-solid fa-ellipsis ${styles.icon}`}></i>
+                    </button>
+                    {openMenuId === user.id && (
+                      <ul className={styles.actions_options}>
+                        <li>
+                          <button className={styles.actions_option} onClick={() => showEditModal(user.id)}>
+                            <i className={`fa-solid fa-pen ${styles.edit_icon}`}></i>
+                            <span>Edit</span>
+                          </button>
+                        </li>
+                        <li>
+                          <button
+                            className={styles.actions_option}
+                            onClick={() => handleDeleteUser(user.id)}
+                          >
+                            <i className={`fa-solid fa-trash ${styles.delete_icon}`}></i>
+                            <span>Delete</span>
+                          </button>
+                        </li>
+                      </ul>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
-      {userModal && <UsersModalWrapper setUserModal={setUserModal} setUsers={setUsers} />}
+      </div>
+      {userModal && (
+        <UsersModalWrapper setUserModal={setUserModal} setUsers={setUsers} />
+      )}
+      {editModal && (
+        <EditModalWrapper setEditModal={setEditModal} editUserId={editUserId}
+        setUsers={setUsers} setOpenMenuId={setOpenMenuId} />
+      )}
     </div>
   );
 };
