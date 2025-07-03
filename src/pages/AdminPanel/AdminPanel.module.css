@@ -1,89 +1,137 @@
-.admin_panel_container{
-    position: relative;
+.admin_panel_container {
+  display: flex;
+  flex-direction: column;
+  min-height: 80vh;
+  background-color: #f7f9fc;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #222;
+  padding: 20px;
+  box-sizing: border-box;
 }
-.general_container{
-    display: flex;
+
+.general_container {
+  display: flex;
+  gap: 20px;
+  flex: 1;
 }
-.tables_part_container{
-    display: flex;
-    flex-direction: column;
-    margin-top: 40px;
-    margin-left: 100px;
-    align-items: end;
+
+.tables_part_container {
+  flex: 1;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 25px;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+  display: flex;
+  flex-direction: column;
 }
-.admin_table_container{
-    width: 100%;
-    display: flex;
-    justify-content: center;
+
+.adduserbtn {
+  align-self: flex-start;
+  background-color: #3b82f6; /* blue */
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 15px;
+  transition: background-color 0.3s ease;
 }
-.adduserbtn{
-    padding: 12px 20px;
-    background-color: rgb(129, 129, 236);
-    border: none;
-    color: white;
-    border-radius: 6px;
-    cursor: pointer;
-    float: right;
-    margin-right: 67px;
+.adduserbtn:hover {
+  background-color: #2563eb;
 }
-.admin_table{
-    width: 90%;
-    border-collapse: collapse;
-    border: 1px solid gray;
-    margin-top: 20px;
-    font-size: 18px;
+
+.admin_table_container {
+  min-height: 80vh;
 }
+
+.admin_table {
+  width: 95%;
+  border-collapse: collapse;
+  font-size: 15px;
+  min-height: 40vh;
+}
+
+.admin_table thead tr {
+  background-color: #e0e7ff;
+}
+
 .admin_table th,
-.admin_table td{
-    border: 1px solid gray;
-    padding: 8px;
-    height: 10px;
-    text-align: center;
-    vertical-align: middle;
+.admin_table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #d1d5db;
 }
-.icon{
-    color: rgb(83, 83, 83);
-    font-size: 20px;
+
+.admin_table th {
+  font-weight: 700;
+  color: #1e293b;
 }
-.actions_td{
-    position: relative;
+
+.admin_table tbody tr:hover {
+  background-color: #f0f4ff;
+  cursor: default;
 }
-.actions_options{
-    width: 100px;
-    min-height: 30px;
-    background-color: rgb(255, 255, 255);
-    border: 1px solid rgb(175, 175, 175);
-    z-index: 99;
-    position: absolute;
-    left: 45px;
-    top: 22px;
-    list-style-type: none;
+
+.actions_td {
+  position: relative;
+  width: 80px;
+  text-align: center;
 }
-.actions_option{
-    width: 100%;
-    padding: 6px 13px;
-    font-size: 15px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    border: none;
-    background-color: white;
+
+.actions_btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #6b7280;
+  padding: 6px;
+  border-radius: 4px;
+  transition: color 0.2s ease;
 }
-.actions_option i{
-    color: rgb(94, 94, 94);
+.actions_btn:hover {
+  color: #2563eb;
 }
-.actions_option:hover{
-    background-color: rgb(231, 229, 229);
-    cursor: pointer;
+.delete_icon {
+  color: red !important;
 }
-.actions_btn{
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
+.edit_icon {
+  color: purple !important;
 }
-.delete_icon{
-    color: red !important;
+.actions_td {
+  position: relative;
 }
-.edit_icon{
-    color: purple !important;
+.actions_options {
+  width: 100px;
+  min-height: 37px;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(175, 175, 175);
+  z-index: 99;
+  position: absolute;
+  left: 30px;
+  top: 40px;
+  list-style-type: none;
+}
+.actions_option {
+  width: 100%;
+  padding: 6px 15px;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  background-color: white;
+}
+.actions_option i {
+  color: rgb(94, 94, 94);
+}
+.actions_option:hover {
+  background-color: rgb(231, 229, 229);
+  cursor: pointer;
+}
+.actions_btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
