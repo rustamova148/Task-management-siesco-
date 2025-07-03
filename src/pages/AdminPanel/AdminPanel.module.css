@@ -32,3 +32,44 @@
     text-align: center;
     vertical-align: middle;
 }
+.icon{
+    color: rgb(83, 83, 83);
+    font-size: 20px;
+}
+.actions_td{
+    position: relative;
+}
+.actions_options{
+    width: 100px;
+    min-height: 30px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(175, 175, 175);
+    z-index: 99;
+    position: absolute;
+    left: 60px;
+    top: 25px;
+    list-style-type: none;
+}
+.actions_option{
+    width: 100%;
+    padding: 6px;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: none;
+    background-color: white;
+}
+.actions_option i{
+    color: rgb(94, 94, 94);
+}
+.actions_option:hover{
+    background-color: rgb(231, 229, 229);
+    cursor: pointer;
+}
+.actions_btn{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}

@@ -5,7 +5,7 @@ import type { User } from "../../pages/AdminPanel/AdminPanel";
 
 const UsersModalWrapper = ({setUserModal,setUsers}:{ setUserModal: (value: boolean) => void;
   setUsers: React.Dispatch<React.SetStateAction<User[]>>
- }) => {
+}) => {
 
 type FormDataType = {
     orgname: string;
@@ -52,7 +52,7 @@ const handleAddUser = async (e: React.FormEvent<HTMLFormElement>) => {
         alert("Error when adding user");
         setUserModal(false);
     }
-    } catch(error){
+    }catch(error){
       alert("No connection with server");
     }
 }

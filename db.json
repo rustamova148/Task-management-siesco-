@@ -12,22 +12,19 @@
       "role": "admin"
     },
     {
-      "id": "2534",
-      "name": "Melek",
-      "email": "melek77@gmail.com",
-      "password": "1234567ghj",
-      "orgname": "Angel Inc",
-      "orgnumber": "994557892451",
-      "orgaddress": "Narimanov raion",
-      "orgId": "18782fda-bb9c-481a-a7d9-e69f76068c3f",
-      "role": "admin"
-    },
-    {
-      "id": "a2a0",
+      "id": "610b",
       "orgname": "Nezrin Tech",
       "name": "Lale",
       "email": "lale67@gmail.com",
       "password": "lale123456",
+      "role": "user"
+    },
+    {
+      "id": "89cc",
+      "orgname": "Nezrin Tech",
+      "name": "Jale",
+      "email": "jale999@gmail.com",
+      "password": "jale123456",
       "role": "user"
     }
   ],
