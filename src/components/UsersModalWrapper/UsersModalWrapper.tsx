@@ -11,11 +11,13 @@ type FormDataType = {
     orgname: string;
     username: string;
     useremail: string;
+    userpassword: string;
 }
 const [formData, setFormData] = useState<FormDataType>({
     orgname: "",
     username: "",
     useremail: "",
+    userpassword: "",
 })
 
 const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,6 +39,7 @@ const handleAddUser = async (e: React.FormEvent<HTMLFormElement>) => {
             orgname: formData.orgname,
             name: formData.username,
             email: formData.useremail,
+            password: formData.userpassword,
             role: "user",
         })
     })
@@ -66,7 +69,12 @@ const handleAddUser = async (e: React.FormEvent<HTMLFormElement>) => {
 
         <label htmlFor="useremail">User Email:</label>
         <input type="email" name="useremail" id="useremail" className={styles.users_input} 
-        onChange={handleChange}/> 
+        onChange={handleChange} /> 
+
+        <label htmlFor="userpassword">User Password:</label>
+        <input type="password" name="userpassword" id="userpassword" className={styles.users_input} 
+        onChange={handleChange} /> 
+
         <button type="submit" className={styles.add_user_submit}>Submit</button>
       </form>
     </Modal>

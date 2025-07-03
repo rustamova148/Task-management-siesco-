@@ -23,38 +23,11 @@
       "role": "admin"
     },
     {
-      "id": "4015",
+      "id": "a2a0",
       "orgname": "Nezrin Tech",
       "name": "Lale",
       "email": "lale67@gmail.com",
-      "role": "user"
-    },
-    {
-      "id": "01dc",
-      "orgname": "Nezrin Tech",
-      "name": "Jale",
-      "email": "jale999@gmail.com",
-      "role": "user"
-    },
-    {
-      "id": "29c6",
-      "orgname": "Angel Inc",
-      "name": "Rena",
-      "email": "rena20@gmail.com",
-      "role": "user"
-    },
-    {
-      "id": "9aca",
-      "orgname": "Nezrin Tech",
-      "name": "Nigar",
-      "email": "nigar22@gmail.com",
-      "role": "user"
-    },
-    {
-      "id": "6714",
-      "orgname": "Nezrin Tech",
-      "name": "Gulnur",
-      "email": "gulnur88@gmail.com",
+      "password": "lale123456",
       "role": "user"
     }
   ],

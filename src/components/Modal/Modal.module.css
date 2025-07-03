@@ -11,7 +11,7 @@
 }
 .modalbox{
     width: 450px;
-    height: 350px;
+    min-height: 430px;
     background-color: white;
     border-radius: 8px;
     display: flex;

@@ -48,14 +48,18 @@ const [users, setUsers] = useState<User[]>([]);
               <th>Organization name</th>
               <th>User name</th>
               <th>User email</th>
+              <th>User password</th>
+              <th>Role</th>
             </tr>
           </thead>
           <tbody>
-            {users.filter(u => u.role === 'user').map((user) => (
+            {users.map((user) => (
               <tr key={user.id}>
                 <td>{user.orgname}</td>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
+                <td>{user.password}</td>
+                <td>{user.role}</td>
               </tr>
             ))}
           </tbody>

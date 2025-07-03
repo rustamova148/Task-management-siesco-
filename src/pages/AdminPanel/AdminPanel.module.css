@@ -8,13 +8,14 @@
     justify-content: center;
 }
 .adduserbtn{
-    margin-left: 70px;
     padding: 12px 20px;
     background-color: rgb(129, 129, 236);
     border: none;
     color: white;
     border-radius: 6px;
     cursor: pointer;
+    float: right;
+    margin-right: 67px;
 }
 .admin_table{
     width: 90%;
@@ -26,7 +27,6 @@
 .admin_table th,
 .admin_table td{
     border: 1px solid gray;
-    width: 30%;
     padding: 8px;
     height: 10px;
     text-align: center;
