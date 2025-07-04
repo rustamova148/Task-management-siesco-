@@ -1,10 +1,11 @@
-import Sidebar from "../../components/Sidebar/Sidebar";
+// import Sidebar from "../../components/Sidebar/Sidebar";
 
 const UserDashboard = () => {
 
   return (
     <div>
-      <Sidebar />
+      {/* <Sidebar /> */}
+      User Dashboard
     </div>
   )
 }
