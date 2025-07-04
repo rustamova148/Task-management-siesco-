@@ -12,6 +12,7 @@
     border: none;
     background-color: rgb(219, 114, 114);
     color: white;
+    margin-top: 6px;
 }
 .users_form{
     width: 80%;
@@ -20,4 +21,7 @@
     /* align-items: center; */
     justify-content: center;
     gap: 15px;
+}
+.error{
+    border: 1px solid red !important;
 }

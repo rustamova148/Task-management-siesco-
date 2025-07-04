@@ -1,63 +1,63 @@
 import { useState } from "react";
-import { v4 as uuidv4 } from 'uuid';
-// import styles from './Signup.module.css'
-// import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
+import styles from "./Signup.module.css";
 
 const Signup = () => {
-// const navigate = useNavigate();
-const [userData, setUserData] = useState({
-  name: "",
-  email: "",
-  password: "",
-  orgname: "",
-  orgnumber: "",
-  orgaddress: "",
-  orgId: uuidv4(),
-});
+  const [userData, setUserData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    orgname: "",
+    orgnumber: "",
+    orgaddress: "",
+    orgId: uuidv4(),
+  });
 
-const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-setUserData(prev => ({
-  ...prev,
-  [e.target.name]: e.target.value
-}));
-};
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
-const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
-  try {
-    const res = await fetch("http://localhost:3001/users", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      name: userData.name,
-      email: userData.email,
-      password: userData.password,
-      orgname: userData.orgname,
-      orgnumber: userData.orgnumber,
-      orgaddress: userData.orgaddress,
-      orgId: userData.orgId,
-      role: "admin",
-    }),
-    });
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const res = await fetch("http://localhost:3001/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: userData.name,
+          email: userData.email,
+          password: userData.password,
+          orgname: userData.orgname,
+          orgnumber: userData.orgnumber,
+          orgaddress: userData.orgaddress,
+          orgId: userData.orgId,
+          role: "admin",
+        }),
+      });
 
-    if (res.ok) {
-      alert("Qeydiyyat uğurla tamamlandı");
-      // navigate('/adminpanel');
-    }else{
-      alert("Xəta baş verdi");
-    }
+      if (res.ok) {
+        alert("Qeydiyyat uğurla tamamlandı");
+        // navigate('/adminpanel');
+      } else {
+        alert("Xəta baş verdi");
+      }
     } catch (error) {
-      alert("Serverle əlaqə yoxdur");
-  }
-};
+      alert("Serverlə əlaqə yoxdur");
+    }
+  };
+
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div>
+    <div className={styles.container}>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <div className={styles.section}>
           <h2>Təşkilat məlumatları</h2>
-          <label htmlFor="oad">Ad:</label> <br />
+
+          <label htmlFor="oad">Ad:</label>
           <input
             type="text"
             name="orgname"
@@ -65,9 +65,9 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             value={userData.orgname}
             onChange={handleChange}
             required
-          />{" "}
-          <br /> <br />
-          <label htmlFor="number">Tel:</label> <br />
+          />
+
+          <label htmlFor="number">Tel:</label>
           <input
             type="number"
             name="orgnumber"
@@ -75,9 +75,9 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             value={userData.orgnumber}
             onChange={handleChange}
             required
-          />{" "}
-          <br /> <br />
-          <label htmlFor="address">Ünvan:</label> <br />
+          />
+
+          <label htmlFor="address">Ünvan:</label>
           <input
             type="text"
             name="orgaddress"
@@ -87,9 +87,11 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             required
           />
         </div>
-        <div>
+
+        <div className={styles.section}>
           <h2>İstifadəçi məlumatları</h2>
-          <label htmlFor="iad">Ad:</label> <br />
+
+          <label htmlFor="iad">Ad:</label>
           <input
             type="text"
             name="name"
@@ -97,9 +99,9 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             value={userData.name}
             onChange={handleChange}
             required
-          />{" "}
-          <br /> <br />
-          <label htmlFor="email">Email:</label> <br />
+          />
+
+          <label htmlFor="email">Email:</label>
           <input
             type="email"
             name="email"
@@ -107,9 +109,9 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             value={userData.email}
             onChange={handleChange}
             required
-          />{" "}
-          <br /> <br />
-          <label htmlFor="password">Şifrə:</label> <br />
+          />
+
+          <label htmlFor="password">Şifrə:</label>
           <input
             type="password"
             name="password"
@@ -119,12 +121,19 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             required
           />
         </div>
-        <br />
-        <a href="/#/signin">Daxil olun</a> <br /> <br />
-        <button type="submit">Sign up</button>
+
+        <div style={{ flexBasis: "100%", textAlign: "left"  }}>
+          <a href="/#/signin" className={styles.linkSignin}>
+            Daxil olun
+          </a> <br />
+          <button type="submit" className={styles.submitButton}>
+            Sign up
+          </button>
+        </div>
       </form>
     </div>
   );
 };
 
 export default Signup;
+

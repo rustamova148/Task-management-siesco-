@@ -1,0 +1,110 @@
+.container {
+  max-width: 500px;
+  margin: 30px auto;
+  padding: 40px 35px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #1f2937;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.form {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.section {
+  flex: 1 1 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #2563eb;
+  border-bottom: 2px solid #2563eb;
+  padding-bottom: 6px;
+  margin-bottom: 12px;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 6px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"] {
+  padding: 14px 18px;
+  font-size: 16px;
+  border-radius: 12px;
+  border: 1.8px solid #cbd5e1;
+  background-color: #f9fafb;
+  transition: all 0.3s ease;
+  outline-offset: 3px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus {
+  border-color: #2563eb;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.3);
+  outline: none;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 16px 0;
+  font-size: 18px;
+  font-weight: 700;
+  border-radius: 14px;
+  border: none;
+  background: linear-gradient(90deg, #2563eb 0%, #3b82f6 100%);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(59,130,246,0.5);
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+  margin-bottom: 12px;
+}
+
+.submitButton:hover {
+  background: linear-gradient(90deg, #1e40af 0%, #2563eb 100%);
+  box-shadow: 0 8px 18px rgba(37, 66, 176, 0.7);
+}
+
+.linkSignin {
+  display: block;
+  font-weight: 600;
+  color: #2563eb;
+  font-size: 15px;
+  text-decoration: none;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.linkSignin:hover {
+  color: #1e40af;
+  text-decoration: underline;
+}
+
+.form div:last-child {
+  flex-basis: 100%;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .form {
+    flex-direction: column;
+  }
+}

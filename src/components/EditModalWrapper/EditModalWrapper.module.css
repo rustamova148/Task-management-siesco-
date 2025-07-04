@@ -12,6 +12,7 @@
     border: none;
     background-color: rgb(219, 114, 114);
     color: white;
+    margin-top: 6px;
 }
 .edit_form{
     width: 80%;
