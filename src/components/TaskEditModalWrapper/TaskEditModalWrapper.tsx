@@ -5,12 +5,12 @@ import { useState, useEffect } from "react";
 
 const TaskEditModalWrapper = ({
   setEditTaskModal,
-  editTaskId,
+  taskId,
   setTasks,
   setOpenTaskMenuId
 }: {
   setEditTaskModal: (value: boolean) => void;
-  editTaskId: number | null;
+  taskId: number | null;
   setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
   setOpenTaskMenuId: React.Dispatch<React.SetStateAction<number | null>>;
 }) => {
@@ -49,10 +49,10 @@ const TaskEditModalWrapper = ({
       }
     };
 
-    if (editTaskId !== null) {
-      fetchUserById(editTaskId);
+    if (taskId !== null) {
+      fetchUserById(taskId);
     }
-  }, [editTaskId]);
+  }, [taskId]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -64,10 +64,10 @@ const TaskEditModalWrapper = ({
 
   const handleEditUser = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (editTaskId === null) return;
+    if (taskId === null) return;
     
     try {
-      const res = await fetch(`http://localhost:3001/tasks/${editTaskId}`, {
+      const res = await fetch(`http://localhost:3001/tasks/${taskId}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -83,7 +83,7 @@ const TaskEditModalWrapper = ({
       const updatedTask = await res.json();
       if (res.ok) {
         setTasks((prevTasks) =>
-          prevTasks.map((task) => (task.id === editTaskId ? updatedTask : task))
+          prevTasks.map((task) => (task.id === taskId ? updatedTask : task))
         );
         setEditTaskModal(false);
         setOpenTaskMenuId(null);

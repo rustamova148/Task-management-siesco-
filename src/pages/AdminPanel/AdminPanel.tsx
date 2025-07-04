@@ -5,7 +5,7 @@ import UsersModalWrapper from "../../components/UsersModalWrapper/UsersModalWrap
 import EditModalWrapper from "../../components/EditModalWrapper/EditModalWrapper";
 import TaskModalWrapper from "../../components/TaskModalWrapper/TaskModalWrapper";
 import TaskEditModalWrapper from "../../components/TaskEditModalWrapper/TaskEditModalWrapper";
-
+import UserAssignModalWrapper from "../../components/UserAssignModalWrapper/UserAssignModalWrapper";
 export interface User {
   id: number;
   name: string;
@@ -32,12 +32,13 @@ const AdminPanel = () => {
   const [editUserModal, setEditUserModal] = useState(false);
   const [editTaskModal, setEditTaskModal] = useState(false);
   const [taskModal, setTaskModal] = useState(false);
+  const [userAssign, setUserAssign] = useState(false);
   const [users, setUsers] = useState<User[]>([]);
   const [tasks, setTasks] = useState<Task[]>([]);
   const [openMenuId, setOpenMenuId] = useState<number | null>(null);
   const [openTaskMenuId, setOpenTaskMenuId] = useState<number | null>(null);
-  const [editUserId, setEditUserId] = useState<number | null>(null);
-  const [editTaskId, setEditTaskId] = useState<number | null>(null);
+  const [userId, setUserId] = useState<number | null>(null);
+  const [taskId, setTaskId] = useState<number | null>(null);
   const [activeTab, setActiveTab] = useState<"users" | "tasks">("users");
 
   useEffect(() => {
@@ -74,13 +75,16 @@ const AdminPanel = () => {
   };
   const showEditModal = (id: number) => {
     setEditUserModal(true);
-    setEditUserId(id);
+    setUserId(id);
   };
   const showTaskEditModal = (id: number) => {
     setEditTaskModal(true);
-    setEditTaskId(id);
+    setTaskId(id);
   };
-
+  const showUserAssignModal = (id: number) => {
+    setUserAssign(true);
+    setUserId(id);
+  }
   const toggleMenu = (id: number) => {
     setOpenMenuId((prev) => (prev === id ? null : id));
   };
@@ -165,7 +169,7 @@ const AdminPanel = () => {
                               <li>
                                 <button
                                   className={styles.actions_option}
-                                  // onClick={() => showEditModal(user.id)}
+                                  onClick={() => showUserAssignModal(user.id)}
                                 >
                                   <i
                                     className={`fa-solid fa-user-plus ${styles.assign_icon}`}
@@ -299,7 +303,7 @@ const AdminPanel = () => {
       {editUserModal && (
         <EditModalWrapper
           setEditUserModal={setEditUserModal}
-          editUserId={editUserId}
+          userId={userId}
           setUsers={setUsers}
           setOpenMenuId={setOpenMenuId}
         />
@@ -307,9 +311,14 @@ const AdminPanel = () => {
       {editTaskModal && (
         <TaskEditModalWrapper
           setEditTaskModal={setEditTaskModal}
-          editTaskId={editTaskId}
+          taskId={taskId}
           setTasks={setTasks}
           setOpenTaskMenuId={setOpenTaskMenuId}
+        />
+      )}
+      {userAssign && (
+        <UserAssignModalWrapper 
+        setUserAssign={setUserAssign} 
         />
       )}
     </div>

@@ -5,12 +5,12 @@ import { useState, useEffect } from "react";
 
 const EditModalWrapper = ({
   setEditUserModal,
-  editUserId,
+  userId,
   setUsers,
   setOpenMenuId
 }: {
   setEditUserModal: (value: boolean) => void;
-  editUserId: number | null;
+  userId: number | null;
   setUsers: React.Dispatch<React.SetStateAction<User[]>>;
   setOpenMenuId: React.Dispatch<React.SetStateAction<number | null>>;
 }) => {
@@ -47,10 +47,10 @@ const EditModalWrapper = ({
       }
     };
 
-    if (editUserId !== null) {
-      fetchUserById(editUserId);
+    if (userId !== null) {
+      fetchUserById(userId);
     }
-  }, [editUserId]);
+  }, [userId]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -62,10 +62,10 @@ const EditModalWrapper = ({
 
   const handleEditUser = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (editUserId === null) return;
+    if (userId === null) return;
 
     try {
-      const res = await fetch(`http://localhost:3001/users/${editUserId}`, {
+      const res = await fetch(`http://localhost:3001/users/${userId}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -80,7 +80,7 @@ const EditModalWrapper = ({
       const updatedUser = await res.json();
       if (res.ok) {
         setUsers((prevUsers) =>
-          prevUsers.map((user) => (user.id === editUserId ? updatedUser : user))
+          prevUsers.map((user) => (user.id === userId ? updatedUser : user))
         );
         setEditUserModal(false);
         setOpenMenuId(null);
