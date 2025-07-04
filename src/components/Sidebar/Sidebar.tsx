@@ -38,7 +38,7 @@ const Sidebar = ({ activeTab, setActiveTab }: TabsProps) => {
           }`}
           onClick={() => setActiveTab("tasks")}
         >
-          <i className="fas fa-tasks"></i> 
+          <i className="fa-solid fa-list-check"></i>
           <span>Tasks</span>
         </button>
       </div>
