@@ -1,8 +1,10 @@
 import { useState } from "react";
 import Modal from "../Modal/Modal";
 import styles from "./TaskModalWrapper.module.css";
+import type {Task} from "../../pages/AdminPanel/AdminPanel";
 
-const TaskModalWrapper = ({setTaskModal}:{ setTaskModal: (value: boolean) => void}) => {
+const TaskModalWrapper = ({setTaskModal,setTasks}:{ setTaskModal: (value: boolean) => void;
+setTasks: React.Dispatch<React.SetStateAction<Task[]>>})=> {
 
 type FormDataType = {
     taskname: string;
@@ -73,7 +75,9 @@ const handleAddTask = async (e: React.FormEvent<HTMLFormElement>) => {
     })
 
     if(res.ok){
-        setTaskModal(false);
+      const newTask = await res.json();
+      setTasks((prev) => [...prev, newTask]);
+      setTaskModal(false);
     }else{
         alert("Error when adding user");
         setTaskModal(false);
@@ -139,9 +143,9 @@ const handleAddTask = async (e: React.FormEvent<HTMLFormElement>) => {
           onChange={handleChange}
         >
           <option value="">-- Select status --</option>
-          <option value="pending">To do</option>
-          <option value="in-progress">In Progress</option>
-          <option value="completed">Completed</option>
+          <option value="To do">To do</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Completed">Completed</option>
         </select>
         {errors.status && <span style={{ color: "red", fontSize: "11px", marginTop: "-10px" }}>{errors.status}</span>}
 

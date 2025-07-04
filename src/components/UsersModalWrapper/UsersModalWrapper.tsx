@@ -53,7 +53,7 @@ setFormData((prev) => ({
 const handleAddUser = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!validate()) {
-    return; // boş sahə varsa form göndərilmir
+    return; 
     }
     try{
         const res = await fetch("http://localhost:3001/users", {

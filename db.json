@@ -28,5 +28,30 @@
       "role": "user"
     }
   ],
-  "tasks": []
+  "tasks": [
+    {
+      "id": "2347",
+      "taskname": "Header",
+      "taskdesc": "Create reusable component",
+      "assignedto": "Nergiz",
+      "deadline": "2025-07-10",
+      "status": "To do"
+    },
+    {
+      "id": "9268",
+      "taskname": "Footer",
+      "taskdesc": "Create resuable footer",
+      "assignedto": "Jale",
+      "deadline": "2025-07-17",
+      "status": "To do"
+    },
+    {
+      "id": "dfbd",
+      "taskname": "Footer",
+      "taskdesc": "Create resuable footer",
+      "assignedto": "Jale",
+      "deadline": "2025-07-16",
+      "status": "To do"
+    }
+  ]
 }

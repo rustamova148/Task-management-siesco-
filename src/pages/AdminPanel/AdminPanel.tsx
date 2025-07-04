@@ -17,11 +17,21 @@ export interface User {
   role: string;
 }
 
+export interface Task {
+  id: number;
+  taskname: string;
+  taskdesc: string;
+  assignedto: string;
+  deadline: string;
+  status: string;
+}
+
 const AdminPanel = () => {
   const [userModal, setUserModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [taskModal, setTaskModal] = useState(false);
   const [users, setUsers] = useState<User[]>([]);
+  const [tasks, setTasks] = useState<Task[]>([]);
   const [openMenuId, setOpenMenuId] = useState<number | null>(null);
   const [editUserId, setEditUserId] = useState<number | null>(null);
   const [activeTab, setActiveTab] = useState<"users" | "tasks">("users");
@@ -37,6 +47,19 @@ const AdminPanel = () => {
       }
     };
     fetchUsers();
+  }, []);
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      try {
+        const res = await fetch("http://localhost:3001/tasks");
+        const data = await res.json();
+        setTasks(data);
+      } catch (error) {
+        console.error("Error fetching tasks:", error);
+      }
+    };
+    fetchTasks();
   }, []);
 
   const showUserModal = () => {
@@ -160,28 +183,28 @@ const AdminPanel = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {users.map((user) => (
-                      <tr key={user.id}>
-                        <td>{user.orgname}</td>
-                        <td>{user.name}</td>
-                        <td>{user.email}</td>
-                        <td>{user.password}</td>
-                        <td>{user.role}</td>
+                    {tasks.map((task) => (
+                      <tr key={task.id}>
+                        <td>{task.taskname}</td>
+                        <td>{task.taskdesc}</td>
+                        <td>{task.assignedto}</td>
+                        <td>{task.deadline}</td>
+                        <td>{task.status}</td>
                         <td className={styles.actions_td}>
                           <button
                             className={styles.actions_btn}
-                            onClick={() => toggleMenu(user.id)}
+                            // onClick={() => toggleMenu(user.id)}
                           >
                             <i
                               className={`fa-solid fa-ellipsis ${styles.icon}`}
                             ></i>
                           </button>
-                          {openMenuId === user.id && (
+                          {/* {openMenuId === user.id && (
                             <ul className={styles.actions_options}>
                               <li>
                                 <button
                                   className={styles.actions_option}
-                                  onClick={() => showEditModal(user.id)}
+                                  // onClick={() => showEditModal(user.id)}
                                 >
                                   <i
                                     className={`fa-solid fa-pen ${styles.edit_icon}`}
@@ -192,7 +215,7 @@ const AdminPanel = () => {
                               <li>
                                 <button
                                   className={styles.actions_option}
-                                  onClick={() => handleDeleteUser(user.id)}
+                                  // onClick={() => handleDeleteUser(user.id)}
                                 >
                                   <i
                                     className={`fa-solid fa-trash ${styles.delete_icon}`}
@@ -201,7 +224,7 @@ const AdminPanel = () => {
                                 </button>
                               </li>
                             </ul>
-                          )}
+                          )} */}
                         </td>
                       </tr>
                     ))}
@@ -216,7 +239,7 @@ const AdminPanel = () => {
         <UsersModalWrapper setUserModal={setUserModal} setUsers={setUsers} />
       )}
       {taskModal && (
-        <TaskModalWrapper setTaskModal={setTaskModal} />
+        <TaskModalWrapper setTaskModal={setTaskModal} setTasks={setTasks} />
       )}
       {editModal && (
         <EditModalWrapper
