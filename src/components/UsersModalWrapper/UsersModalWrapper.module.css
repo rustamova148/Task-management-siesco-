@@ -3,6 +3,7 @@
     outline: none;
     border-radius: 6px;
     border: 1px solid grey;
+    width: 100%;
 }
 .add_user_submit{
     width: 80px;
@@ -15,10 +16,11 @@
     margin-top: 6px;
 }
 .users_form{
-    width: 80%;
+    width: 90%;
+    padding-left: 40px;
+    padding-top: 20px;
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
     justify-content: center;
     gap: 15px;
 }

@@ -4,11 +4,16 @@ import type { RootState } from "../../redux/app/store";
 import { clearUser } from "../../redux/features/user/userSlice";
 import { useNavigate } from "react-router-dom";
 
-const Sidebar = () => {
+interface TabsProps {
+  activeTab: "users" | "tasks";
+  setActiveTab: React.Dispatch<React.SetStateAction<"users" | "tasks">>;
+}
+
+const Sidebar = ({ activeTab, setActiveTab }: TabsProps) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state: RootState) => state.user.currentUser);
-  
+
   const handleLogout = () => {
     dispatch(clearUser());
     localStorage.removeItem("user");
@@ -17,6 +22,27 @@ const Sidebar = () => {
   return (
     <div className={styles.sidebar_container}>
       <p className={styles.sidebar_head}>Task Manager</p>
+      <div className={styles.tabWrapper}>
+        <button
+          className={`${styles.tabBtn} ${
+            activeTab === "users" ? styles.active : ""
+          }`}
+          onClick={() => setActiveTab("users")}
+        >
+          <i className="fa-solid fa-users"></i>
+          <span>Users</span>
+        </button>
+        <button
+          className={`${styles.tabBtn} ${
+            activeTab === "tasks" ? styles.active : ""
+          }`}
+          onClick={() => setActiveTab("tasks")}
+        >
+          <i className="fas fa-tasks"></i> 
+          <span>Tasks</span>
+        </button>
+      </div>
+
       <div className={styles.profilebox}>
         <div className={styles.profile_info}>
           <span>{user?.name}</span>

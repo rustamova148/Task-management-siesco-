@@ -3,6 +3,7 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import styles from "./AdminPanel.module.css";
 import UsersModalWrapper from "../../components/UsersModalWrapper/UsersModalWrapper";
 import EditModalWrapper from "../../components/EditModalWrapper/EditModalWrapper";
+import TaskModalWrapper from "../../components/TaskModalWrapper/TaskModalWrapper";
 
 export interface User {
   id: number;
@@ -19,9 +20,11 @@ export interface User {
 const AdminPanel = () => {
   const [userModal, setUserModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
+  const [taskModal, setTaskModal] = useState(false);
   const [users, setUsers] = useState<User[]>([]);
   const [openMenuId, setOpenMenuId] = useState<number | null>(null);
   const [editUserId, setEditUserId] = useState<number | null>(null);
+  const [activeTab, setActiveTab] = useState<"users" | "tasks">("users");
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -39,10 +42,13 @@ const AdminPanel = () => {
   const showUserModal = () => {
     setUserModal(true);
   };
-  const showEditModal = (id:number) => {
+  const showTaskModal = () => {
+    setTaskModal(true);
+  };
+  const showEditModal = (id: number) => {
     setEditModal(true);
     setEditUserId(id);
-  }
+  };
   const toggleMenu = (id: number) => {
     setOpenMenuId((prev) => (prev === id ? null : id));
   };
@@ -66,71 +72,159 @@ const AdminPanel = () => {
   return (
     <div className={styles.admin_panel_container}>
       <div className={styles.general_container}>
-      <Sidebar />
-      <div className={styles.tables_part_container}>
-        <button className={styles.adduserbtn} onClick={showUserModal}>
-          Add user
-        </button>
-        <div className={styles.admin_table_container}>
-          <table className={styles.admin_table}>
-            <thead>
-              <tr>
-                <th>Organization name</th>
-                <th>User name</th>
-                <th>User email</th>
-                <th>User password</th>
-                <th>Role</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {users.map((user) => (
-                <tr key={user.id}>
-                  <td>{user.orgname}</td>
-                  <td>{user.name}</td>
-                  <td>{user.email}</td>
-                  <td>{user.password}</td>
-                  <td>{user.role}</td>
-                  <td className={styles.actions_td}>
-                    <button
-                      className={styles.actions_btn}
-                      onClick={() => toggleMenu(user.id)}
-                    >
-                      <i className={`fa-solid fa-ellipsis ${styles.icon}`}></i>
-                    </button>
-                    {openMenuId === user.id && (
-                      <ul className={styles.actions_options}>
-                        <li>
-                          <button className={styles.actions_option} onClick={() => showEditModal(user.id)}>
-                            <i className={`fa-solid fa-pen ${styles.edit_icon}`}></i>
-                            <span>Edit</span>
-                          </button>
-                        </li>
-                        <li>
+        <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+        <div className={styles.tables_part_container}>
+          {activeTab === "users" && (
+            <div>
+              <button className={styles.adduserbtn} onClick={showUserModal}>
+                Add user
+              </button>
+              <div className={styles.admin_table_container}>
+                <table className={styles.admin_table}>
+                  <thead>
+                    <tr>
+                      <th>Organization name</th>
+                      <th>User name</th>
+                      <th>User email</th>
+                      <th>User password</th>
+                      <th>Role</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {users.map((user) => (
+                      <tr key={user.id}>
+                        <td>{user.orgname}</td>
+                        <td>{user.name}</td>
+                        <td>{user.email}</td>
+                        <td>{user.password}</td>
+                        <td>{user.role}</td>
+                        <td className={styles.actions_td}>
                           <button
-                            className={styles.actions_option}
-                            onClick={() => handleDeleteUser(user.id)}
+                            className={styles.actions_btn}
+                            onClick={() => toggleMenu(user.id)}
                           >
-                            <i className={`fa-solid fa-trash ${styles.delete_icon}`}></i>
-                            <span>Delete</span>
+                            <i
+                              className={`fa-solid fa-ellipsis ${styles.icon}`}
+                            ></i>
                           </button>
-                        </li>
-                      </ul>
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                          {openMenuId === user.id && (
+                            <ul className={styles.actions_options}>
+                              <li>
+                                <button
+                                  className={styles.actions_option}
+                                  onClick={() => showEditModal(user.id)}
+                                >
+                                  <i
+                                    className={`fa-solid fa-pen ${styles.edit_icon}`}
+                                  ></i>
+                                  <span>Edit</span>
+                                </button>
+                              </li>
+                              <li>
+                                <button
+                                  className={styles.actions_option}
+                                  onClick={() => handleDeleteUser(user.id)}
+                                >
+                                  <i
+                                    className={`fa-solid fa-trash ${styles.delete_icon}`}
+                                  ></i>
+                                  <span>Delete</span>
+                                </button>
+                              </li>
+                            </ul>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+          {activeTab === "tasks" && (
+            <div>
+              <button className={styles.adduserbtn} onClick={showTaskModal}>
+                Add task
+              </button>
+              <div className={styles.admin_table_container}>
+                <table className={styles.admin_table}>
+                  <thead>
+                    <tr>
+                      <th>Task name</th>
+                      <th>Task Description</th>
+                      <th>Assigned to</th>
+                      <th>Deadline</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {users.map((user) => (
+                      <tr key={user.id}>
+                        <td>{user.orgname}</td>
+                        <td>{user.name}</td>
+                        <td>{user.email}</td>
+                        <td>{user.password}</td>
+                        <td>{user.role}</td>
+                        <td className={styles.actions_td}>
+                          <button
+                            className={styles.actions_btn}
+                            onClick={() => toggleMenu(user.id)}
+                          >
+                            <i
+                              className={`fa-solid fa-ellipsis ${styles.icon}`}
+                            ></i>
+                          </button>
+                          {openMenuId === user.id && (
+                            <ul className={styles.actions_options}>
+                              <li>
+                                <button
+                                  className={styles.actions_option}
+                                  onClick={() => showEditModal(user.id)}
+                                >
+                                  <i
+                                    className={`fa-solid fa-pen ${styles.edit_icon}`}
+                                  ></i>
+                                  <span>Edit</span>
+                                </button>
+                              </li>
+                              <li>
+                                <button
+                                  className={styles.actions_option}
+                                  onClick={() => handleDeleteUser(user.id)}
+                                >
+                                  <i
+                                    className={`fa-solid fa-trash ${styles.delete_icon}`}
+                                  ></i>
+                                  <span>Delete</span>
+                                </button>
+                              </li>
+                            </ul>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
         </div>
-      </div>
       </div>
       {userModal && (
         <UsersModalWrapper setUserModal={setUserModal} setUsers={setUsers} />
       )}
+      {taskModal && (
+        <TaskModalWrapper setTaskModal={setTaskModal} />
+      )}
       {editModal && (
-        <EditModalWrapper setEditModal={setEditModal} editUserId={editUserId}
-        setUsers={setUsers} setOpenMenuId={setOpenMenuId} />
+        <EditModalWrapper
+          setEditModal={setEditModal}
+          editUserId={editUserId}
+          setUsers={setUsers}
+          setOpenMenuId={setOpenMenuId}
+        />
       )}
     </div>
   );
