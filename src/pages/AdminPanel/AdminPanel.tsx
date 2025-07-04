@@ -76,7 +76,7 @@ const AdminPanel = () => {
     setEditUserModal(true);
     setEditUserId(id);
   };
-   const showTaskEditModal = (id: number) => {
+  const showTaskEditModal = (id: number) => {
     setEditTaskModal(true);
     setEditTaskId(id);
   };
@@ -287,7 +287,11 @@ const AdminPanel = () => {
         </div>
       </div>
       {userModal && (
-        <UsersModalWrapper setUserModal={setUserModal} setUsers={setUsers} />
+        <UsersModalWrapper
+          setUserModal={setUserModal}
+          setUsers={setUsers}
+          setOpenMenuId={setOpenMenuId}
+        />
       )}
       {taskModal && (
         <TaskModalWrapper setTaskModal={setTaskModal} setTasks={setTasks} />
@@ -305,7 +309,7 @@ const AdminPanel = () => {
           setEditTaskModal={setEditTaskModal}
           editTaskId={editTaskId}
           setTasks={setTasks}
-          setOpenMenuId={setOpenMenuId}
+          setOpenTaskMenuId={setOpenTaskMenuId}
         />
       )}
     </div>

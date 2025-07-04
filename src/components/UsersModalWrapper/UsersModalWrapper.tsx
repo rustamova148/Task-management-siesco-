@@ -3,8 +3,9 @@ import Modal from "../Modal/Modal";
 import styles from "./UsersModalWrapper.module.css";
 import type { User } from "../../pages/AdminPanel/AdminPanel";
 
-const UsersModalWrapper = ({setUserModal,setUsers}:{ setUserModal: (value: boolean) => void;
-  setUsers: React.Dispatch<React.SetStateAction<User[]>>
+const UsersModalWrapper = ({setUserModal,setUsers,setOpenMenuId}:{ setUserModal: (value: boolean) => void;
+  setUsers: React.Dispatch<React.SetStateAction<User[]>> ;
+  setOpenMenuId: React.Dispatch<React.SetStateAction<number | null>>
 }) => {
 
 type FormDataType = {
@@ -83,7 +84,7 @@ const handleAddUser = async (e: React.FormEvent<HTMLFormElement>) => {
     }
 }
   return (
-    <Modal setUserModal={setUserModal}>
+    <Modal setUserModal={setUserModal} setOpenMenuId={setOpenMenuId}>
       <form className={styles.users_form} onSubmit={handleAddUser}>
         <label htmlFor="orgname">Organization name:</label> 
         <input type="text" name="orgname" id="orgname" className={`${styles.users_input} ${errors.orgname ? styles.error : ""}`}

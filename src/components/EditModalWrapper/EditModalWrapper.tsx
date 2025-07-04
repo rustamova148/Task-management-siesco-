@@ -94,7 +94,7 @@ const EditModalWrapper = ({
   };
 
   return (
-    <Modal setEditUserModal={setEditUserModal}>
+    <Modal setEditUserModal={setEditUserModal} setOpenMenuId={setOpenMenuId}>
       <form className={styles.edit_user_form} onSubmit={handleEditUser}>
         <label htmlFor="orgname">Organization name:</label>
         <input

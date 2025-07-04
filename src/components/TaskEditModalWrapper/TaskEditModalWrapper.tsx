@@ -7,12 +7,12 @@ const TaskEditModalWrapper = ({
   setEditTaskModal,
   editTaskId,
   setTasks,
-  setOpenMenuId
+  setOpenTaskMenuId
 }: {
   setEditTaskModal: (value: boolean) => void;
   editTaskId: number | null;
   setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
-  setOpenMenuId: React.Dispatch<React.SetStateAction<number | null>>;
+  setOpenTaskMenuId: React.Dispatch<React.SetStateAction<number | null>>;
 }) => {
 
   const [taskToEdit, setTaskToEdit] = useState<Task | null>(null);
@@ -62,7 +62,7 @@ const TaskEditModalWrapper = ({
     }));
   };
 
-  const handleEditTask = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleEditUser = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (editTaskId === null) return;
     
@@ -86,7 +86,7 @@ const TaskEditModalWrapper = ({
           prevTasks.map((task) => (task.id === editTaskId ? updatedTask : task))
         );
         setEditTaskModal(false);
-        setOpenMenuId(null);
+        setOpenTaskMenuId(null);
       } else {
         alert("Error updating task");
       }
@@ -97,8 +97,8 @@ const TaskEditModalWrapper = ({
   };
 
   return (
-    <Modal setEditTaskModal={setEditTaskModal}>
-      <form className={styles.edit_form} onSubmit={handleEditTask}>
+    <Modal setEditTaskModal={setEditTaskModal} setOpenTaskMenuId={setOpenTaskMenuId}>
+      <form className={styles.edit_form} onSubmit={handleEditUser}>
         <label htmlFor="edtaskname">Task name:</label>
         <input
           type="text"
