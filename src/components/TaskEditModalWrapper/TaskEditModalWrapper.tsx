@@ -1,0 +1,150 @@
+import Modal from "../Modal/Modal";
+import type { Task } from "../../pages/AdminPanel/AdminPanel";
+import styles from "./TaskEditModalWrapper.module.css";
+import { useState, useEffect } from "react";
+
+const TaskEditModalWrapper = ({
+  setEditTaskModal,
+  editTaskId,
+  setTasks,
+  setOpenMenuId
+}: {
+  setEditTaskModal: (value: boolean) => void;
+  editTaskId: number | null;
+  setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
+  setOpenMenuId: React.Dispatch<React.SetStateAction<number | null>>;
+}) => {
+
+  const [taskToEdit, setTaskToEdit] = useState<Task | null>(null);
+  const [formData, setFormData] = useState({
+    taskname: "",
+    taskdesc: "",
+    assignedto: "",
+    deadline: "",
+    status: "",
+  });
+
+  useEffect(() => {
+    if (taskToEdit) {
+      setFormData({
+        taskname: taskToEdit.taskname,
+        taskdesc: taskToEdit.taskdesc,
+        assignedto: taskToEdit.assignedto,
+        deadline: taskToEdit.deadline,
+        status: taskToEdit.status,
+      });
+    }
+  }, [taskToEdit]);
+
+  useEffect(() => {
+    const fetchUserById = async (id: number) => {
+      try {
+        const res = await fetch(`http://localhost:3001/tasks/${id}`);
+        if (!res.ok) throw new Error("Task not found");
+        const user = await res.json();
+        setTaskToEdit(user);
+      } catch (error) {
+        console.error("Error fetching task:", error);
+        setTaskToEdit(null);
+      }
+    };
+
+    if (editTaskId !== null) {
+      fetchUserById(editTaskId);
+    }
+  }, [editTaskId]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleEditTask = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (editTaskId === null) return;
+    
+    try {
+      const res = await fetch(`http://localhost:3001/tasks/${editTaskId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          taskname: formData.taskname,
+          taskdesc: formData.taskdesc,
+          assignedto: formData.assignedto,
+          deadline: formData.deadline,
+          status: formData.status,
+        }),
+      });
+      const updatedTask = await res.json();
+      if (res.ok) {
+        setTasks((prevTasks) =>
+          prevTasks.map((task) => (task.id === editTaskId ? updatedTask : task))
+        );
+        setEditTaskModal(false);
+        setOpenMenuId(null);
+      } else {
+        alert("Error updating task");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Connection error");
+    }
+  };
+
+  return (
+    <Modal setEditTaskModal={setEditTaskModal}>
+      <form className={styles.edit_form} onSubmit={handleEditTask}>
+        <label htmlFor="edtaskname">Task name:</label>
+        <input
+          type="text"
+          name="taskname"
+          id="edtaskname"
+          value={formData.taskname}
+          className={styles.edit_input}
+          onChange={handleChange}
+        />
+
+        <label htmlFor="edtaskdesc">Task Description:</label>
+        <input
+          type="text"
+          name="taskdesc"
+          id="edtaskdesc"
+          value={formData.taskdesc}
+          className={styles.edit_input}
+          onChange={handleChange}
+        />
+
+        <label htmlFor="edassignedto">Assigned to:</label>
+        <input
+          type="text"
+          name="assignedto"
+          id="edassignedto"
+          value={formData.assignedto}
+          className={styles.edit_input}
+          onChange={handleChange}
+        />
+
+        <label htmlFor="eddeadline">Deadline:</label>
+        <input
+          type="password"
+          name="deadline"
+          id="eddeadline"
+          value={formData.deadline}
+          className={styles.edit_input}
+          onChange={handleChange}
+        />
+
+        <button type="submit" className={styles.edit_task_submit}>
+          Submit
+        </button>
+      </form>
+    </Modal>
+  );
+};
+
+export default TaskEditModalWrapper;

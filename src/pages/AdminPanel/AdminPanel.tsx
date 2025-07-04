@@ -4,6 +4,7 @@ import styles from "./AdminPanel.module.css";
 import UsersModalWrapper from "../../components/UsersModalWrapper/UsersModalWrapper";
 import EditModalWrapper from "../../components/EditModalWrapper/EditModalWrapper";
 import TaskModalWrapper from "../../components/TaskModalWrapper/TaskModalWrapper";
+import TaskEditModalWrapper from "../../components/TaskEditModalWrapper/TaskEditModalWrapper";
 
 export interface User {
   id: number;
@@ -28,12 +29,15 @@ export interface Task {
 
 const AdminPanel = () => {
   const [userModal, setUserModal] = useState(false);
-  const [editModal, setEditModal] = useState(false);
+  const [editUserModal, setEditUserModal] = useState(false);
+  const [editTaskModal, setEditTaskModal] = useState(false);
   const [taskModal, setTaskModal] = useState(false);
   const [users, setUsers] = useState<User[]>([]);
   const [tasks, setTasks] = useState<Task[]>([]);
   const [openMenuId, setOpenMenuId] = useState<number | null>(null);
+  const [openTaskMenuId, setOpenTaskMenuId] = useState<number | null>(null);
   const [editUserId, setEditUserId] = useState<number | null>(null);
+  const [editTaskId, setEditTaskId] = useState<number | null>(null);
   const [activeTab, setActiveTab] = useState<"users" | "tasks">("users");
 
   useEffect(() => {
@@ -69,11 +73,19 @@ const AdminPanel = () => {
     setTaskModal(true);
   };
   const showEditModal = (id: number) => {
-    setEditModal(true);
+    setEditUserModal(true);
     setEditUserId(id);
   };
+   const showTaskEditModal = (id: number) => {
+    setEditTaskModal(true);
+    setEditTaskId(id);
+  };
+
   const toggleMenu = (id: number) => {
     setOpenMenuId((prev) => (prev === id ? null : id));
+  };
+  const toggleTaskMenu = (id: number) => {
+    setOpenTaskMenuId((prev) => (prev === id ? null : id));
   };
   const handleDeleteUser = async (id: number) => {
     try {
@@ -90,6 +102,23 @@ const AdminPanel = () => {
     } catch (error) {
       alert("No connection with server");
       console.error("Error deleting user:", error);
+    }
+  };
+  const handleDeleteTask = async (id: number) => {
+    try {
+      const res = await fetch(`http://localhost:3001/tasks/${id}`, {
+        method: "DELETE",
+      });
+
+      if (res.ok) {
+        setTasks((prev) => prev.filter((task) => task.id !== id));
+        setOpenMenuId(null);
+      } else {
+        alert("Error when deleting task");
+      }
+    } catch (error) {
+      alert("No connection with server");
+      console.error("Error deleting task:", error);
     }
   };
   return (
@@ -133,6 +162,17 @@ const AdminPanel = () => {
                           </button>
                           {openMenuId === user.id && (
                             <ul className={styles.actions_options}>
+                              <li>
+                                <button
+                                  className={styles.actions_option}
+                                  // onClick={() => showEditModal(user.id)}
+                                >
+                                  <i
+                                    className={`fa-solid fa-user-plus ${styles.assign_icon}`}
+                                  ></i>
+                                  <span>Assign</span>
+                                </button>
+                              </li>
                               <li>
                                 <button
                                   className={styles.actions_option}
@@ -193,18 +233,29 @@ const AdminPanel = () => {
                         <td className={styles.actions_td}>
                           <button
                             className={styles.actions_btn}
-                            // onClick={() => toggleMenu(user.id)}
+                            onClick={() => toggleTaskMenu(task.id)}
                           >
                             <i
                               className={`fa-solid fa-ellipsis ${styles.icon}`}
                             ></i>
                           </button>
-                          {/* {openMenuId === user.id && (
+                          {openTaskMenuId === task.id && (
                             <ul className={styles.actions_options}>
                               <li>
                                 <button
                                   className={styles.actions_option}
                                   // onClick={() => showEditModal(user.id)}
+                                >
+                                  <i
+                                    className={`fa-solid fa-user-plus ${styles.assign_icon}`}
+                                  ></i>
+                                  <span>Assign</span>
+                                </button>
+                              </li>
+                              <li>
+                                <button
+                                  className={styles.actions_option}
+                                  onClick={() => showTaskEditModal(task.id)}
                                 >
                                   <i
                                     className={`fa-solid fa-pen ${styles.edit_icon}`}
@@ -215,7 +266,7 @@ const AdminPanel = () => {
                               <li>
                                 <button
                                   className={styles.actions_option}
-                                  // onClick={() => handleDeleteUser(user.id)}
+                                  onClick={() => handleDeleteTask(task.id)}
                                 >
                                   <i
                                     className={`fa-solid fa-trash ${styles.delete_icon}`}
@@ -224,7 +275,7 @@ const AdminPanel = () => {
                                 </button>
                               </li>
                             </ul>
-                          )} */}
+                          )}
                         </td>
                       </tr>
                     ))}
@@ -241,11 +292,19 @@ const AdminPanel = () => {
       {taskModal && (
         <TaskModalWrapper setTaskModal={setTaskModal} setTasks={setTasks} />
       )}
-      {editModal && (
+      {editUserModal && (
         <EditModalWrapper
-          setEditModal={setEditModal}
+          setEditUserModal={setEditUserModal}
           editUserId={editUserId}
           setUsers={setUsers}
+          setOpenMenuId={setOpenMenuId}
+        />
+      )}
+      {editTaskModal && (
+        <TaskEditModalWrapper
+          setEditTaskModal={setEditTaskModal}
+          editTaskId={editTaskId}
+          setTasks={setTasks}
           setOpenMenuId={setOpenMenuId}
         />
       )}

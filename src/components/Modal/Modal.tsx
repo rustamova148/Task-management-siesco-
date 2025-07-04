@@ -2,16 +2,18 @@ import styles from "./Modal.module.css"
 
 type ModalProps = {
   setUserModal?: (value: boolean) => void;
-  setEditModal?: (value: boolean) => void;
+  setEditUserModal?: (value: boolean) => void;
+  setEditTaskModal?: (value: boolean) => void;
   setTaskModal?: (value: boolean) => void;
   children?: React.ReactNode;
 }
 
-const Modal = ({setUserModal, setEditModal, setTaskModal, children}: ModalProps) => {
+const Modal = ({setUserModal, setEditUserModal, setEditTaskModal, setTaskModal, children}: ModalProps) => {
 
 const closeUserModal = () => {
 setUserModal?.(false);
-setEditModal?.(false);
+setEditUserModal?.(false);
+setEditTaskModal?.(false);
 setTaskModal?.(false);
 }
 

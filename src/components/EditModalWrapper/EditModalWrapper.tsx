@@ -4,12 +4,12 @@ import styles from "./EditModalWrapper.module.css";
 import { useState, useEffect } from "react";
 
 const EditModalWrapper = ({
-  setEditModal,
+  setEditUserModal,
   editUserId,
   setUsers,
   setOpenMenuId
 }: {
-  setEditModal: (value: boolean) => void;
+  setEditUserModal: (value: boolean) => void;
   editUserId: number | null;
   setUsers: React.Dispatch<React.SetStateAction<User[]>>;
   setOpenMenuId: React.Dispatch<React.SetStateAction<number | null>>;
@@ -82,7 +82,7 @@ const EditModalWrapper = ({
         setUsers((prevUsers) =>
           prevUsers.map((user) => (user.id === editUserId ? updatedUser : user))
         );
-        setEditModal(false);
+        setEditUserModal(false);
         setOpenMenuId(null);
       } else {
         alert("Error updating user");
@@ -94,8 +94,8 @@ const EditModalWrapper = ({
   };
 
   return (
-    <Modal setEditModal={setEditModal}>
-      <form className={styles.edit_form} onSubmit={handleEditUser}>
+    <Modal setEditUserModal={setEditUserModal}>
+      <form className={styles.edit_user_form} onSubmit={handleEditUser}>
         <label htmlFor="orgname">Organization name:</label>
         <input
           type="text"

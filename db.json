@@ -18,14 +18,6 @@
       "email": "farida67@gmail.com",
       "password": "farida123456",
       "role": "user"
-    },
-    {
-      "id": "7399",
-      "orgname": "Nezrin Tech",
-      "name": "Nergiz",
-      "email": "nergiz889@gmail.com",
-      "password": "nergiz123456",
-      "role": "user"
     }
   ],
   "tasks": [
@@ -38,19 +30,11 @@
       "status": "To do"
     },
     {
-      "id": "9268",
+      "id": "47a9",
       "taskname": "Footer",
       "taskdesc": "Create resuable footer",
-      "assignedto": "Jale",
-      "deadline": "2025-07-17",
-      "status": "To do"
-    },
-    {
-      "id": "dfbd",
-      "taskname": "Footer",
-      "taskdesc": "Create resuable footer",
-      "assignedto": "Jale",
-      "deadline": "2025-07-16",
+      "assignedto": "Nergiz",
+      "deadline": "2025-07-15",
       "status": "To do"
     }
   ]

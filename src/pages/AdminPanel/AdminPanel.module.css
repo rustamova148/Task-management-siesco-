@@ -50,7 +50,7 @@
   width: 95%;
   border-collapse: collapse;
   font-size: 15px;
-  min-height: 40vh;
+  /* height: 40vh; */
 }
 
 .admin_table thead tr {
@@ -63,7 +63,6 @@
   text-align: left;
   border-bottom: 1px solid #d1d5db;
 }
-
 .admin_table th {
   font-weight: 700;
   color: #1e293b;
@@ -98,6 +97,9 @@
 }
 .edit_icon {
   color: purple !important;
+}
+.assign_icon{
+  color: rgb(3, 85, 3) !important;
 }
 .actions_td {
   position: relative;
@@ -134,4 +136,10 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
+}
+/* .admin_table tbody td {
+  
+} */
+.admin_table tbody tr {
+  height: 36px !important; 
 }
