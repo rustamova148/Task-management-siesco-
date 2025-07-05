@@ -5,14 +5,14 @@ type ModalProps = {
   setEditUserModal?: (value: boolean) => void;
   setEditTaskModal?: (value: boolean) => void;
   setTaskModal?: (value: boolean) => void;
-  setOpenMenuId?: (value: number | null) => void;
+  setOpenUserMenuId?: (value: number | null) => void;
   setOpenTaskMenuId?: (value: number | null) => void;
   setUserAssign?: (value: boolean) => void;
   children?: React.ReactNode;
 }
 
 const Modal = ({setUserModal, setEditUserModal, setEditTaskModal, setTaskModal, 
-setOpenMenuId, setOpenTaskMenuId, setUserAssign, children}: ModalProps) => {
+setOpenUserMenuId, setOpenTaskMenuId, setUserAssign, children}: ModalProps) => {
 
 const closeUserModal = () => {
 setUserModal?.(false);
@@ -20,7 +20,7 @@ setEditUserModal?.(false);
 setEditTaskModal?.(false);
 setTaskModal?.(false);
 setUserAssign?.(false);
-setOpenMenuId?.(null);
+setOpenUserMenuId?.(null);
 setOpenTaskMenuId?.(null);
 }
 

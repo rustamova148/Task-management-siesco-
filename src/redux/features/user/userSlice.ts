@@ -1,17 +1,6 @@
 import { createSlice} from "@reduxjs/toolkit";
 import type {PayloadAction} from "@reduxjs/toolkit"
-
-interface User {
-    id: number,
-    name: string,
-    email: string,
-    password: string,
-    orgname: string,
-    orgnumber: number,
-    orgaddress: string,
-    orgId: number,
-    role: string
-}
+import type { User } from "../../../pages/AdminPanel/AdminPanel"
 
 interface UserState {
     currentUser: User | null;

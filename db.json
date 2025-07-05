@@ -9,14 +9,29 @@
       "orgnumber": "994553892312",
       "orgaddress": "Yasamal raion",
       "orgId": "428cbc7e-f9ae-4e3b-8f8f-f6f6556efb63",
+      "assignedTasks": [],
       "role": "admin"
     },
     {
-      "id": "610b",
+      "id": "2c2b",
       "orgname": "Nezrin Tech",
-      "name": "Farida",
-      "email": "farida67@gmail.com",
-      "password": "farida123456",
+      "name": "Nergiz",
+      "email": "nergiz889@gmail.com",
+      "password": "nergiz123456",
+      "assignedTasks": [
+        "2347"
+      ],
+      "role": "user"
+    },
+    {
+      "id": "99b3",
+      "orgname": "Nezrin Tech",
+      "name": "Lale",
+      "email": "lale77@gmail.com",
+      "password": "lale123456",
+      "assignedTasks": [
+        "47a9"
+      ],
       "role": "user"
     }
   ],
@@ -35,6 +50,14 @@
       "taskdesc": "Create resuable footer",
       "assignedto": "Nergiz",
       "deadline": "2025-07-15",
+      "status": "To do"
+    },
+    {
+      "id": "8c21",
+      "taskname": "Section",
+      "taskdesc": "Section part",
+      "assignedto": "Nergiz",
+      "deadline": "2025-07-23",
       "status": "To do"
     }
   ]

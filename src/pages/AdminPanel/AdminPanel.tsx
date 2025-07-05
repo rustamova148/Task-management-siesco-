@@ -15,6 +15,7 @@ export interface User {
   orgnumber: number;
   orgaddress: string;
   orgId: number;
+  assignedTasks: number[];
   role: string;
 }
 
@@ -35,7 +36,7 @@ const AdminPanel = () => {
   const [userAssign, setUserAssign] = useState(false);
   const [users, setUsers] = useState<User[]>([]);
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [openMenuId, setOpenMenuId] = useState<number | null>(null);
+  const [openMenuId, setOpenUserMenuId] = useState<number | null>(null);
   const [openTaskMenuId, setOpenTaskMenuId] = useState<number | null>(null);
   const [userId, setUserId] = useState<number | null>(null);
   const [taskId, setTaskId] = useState<number | null>(null);
@@ -86,7 +87,7 @@ const AdminPanel = () => {
     setUserId(id);
   }
   const toggleMenu = (id: number) => {
-    setOpenMenuId((prev) => (prev === id ? null : id));
+    setOpenUserMenuId((prev) => (prev === id ? null : id));
   };
   const toggleTaskMenu = (id: number) => {
     setOpenTaskMenuId((prev) => (prev === id ? null : id));
@@ -99,7 +100,7 @@ const AdminPanel = () => {
 
       if (res.ok) {
         setUsers((prev) => prev.filter((user) => user.id !== id));
-        setOpenMenuId(null);
+        setOpenUserMenuId(null);
       } else {
         alert("Error when deleting user");
       }
@@ -116,7 +117,7 @@ const AdminPanel = () => {
 
       if (res.ok) {
         setTasks((prev) => prev.filter((task) => task.id !== id));
-        setOpenMenuId(null);
+        setOpenUserMenuId(null);
       } else {
         alert("Error when deleting task");
       }
@@ -294,7 +295,7 @@ const AdminPanel = () => {
         <UsersModalWrapper
           setUserModal={setUserModal}
           setUsers={setUsers}
-          setOpenMenuId={setOpenMenuId}
+          setOpenUserMenuId={setOpenUserMenuId}
         />
       )}
       {taskModal && (
@@ -305,7 +306,7 @@ const AdminPanel = () => {
           setEditUserModal={setEditUserModal}
           userId={userId}
           setUsers={setUsers}
-          setOpenMenuId={setOpenMenuId}
+          setOpenUserMenuId={setOpenUserMenuId}
         />
       )}
       {editTaskModal && (
@@ -319,6 +320,10 @@ const AdminPanel = () => {
       {userAssign && (
         <UserAssignModalWrapper 
         setUserAssign={setUserAssign} 
+        setOpenUserMenuId={setOpenUserMenuId}
+        setTasks={setTasks}
+        tasks={tasks}
+        userId={userId}
         />
       )}
     </div>

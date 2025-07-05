@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 import styles from "./Signup.module.css";
 
 const Signup = () => {
@@ -10,7 +9,6 @@ const Signup = () => {
     orgname: "",
     orgnumber: "",
     orgaddress: "",
-    orgId: uuidv4(),
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,14 +33,12 @@ const Signup = () => {
           orgname: userData.orgname,
           orgnumber: userData.orgnumber,
           orgaddress: userData.orgaddress,
-          orgId: userData.orgId,
           role: "admin",
         }),
       });
 
       if (res.ok) {
         alert("Qeydiyyat uğurla tamamlandı");
-        // navigate('/adminpanel');
       } else {
         alert("Xəta baş verdi");
       }

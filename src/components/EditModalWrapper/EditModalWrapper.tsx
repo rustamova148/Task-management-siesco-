@@ -7,12 +7,12 @@ const EditModalWrapper = ({
   setEditUserModal,
   userId,
   setUsers,
-  setOpenMenuId
+  setOpenUserMenuId
 }: {
   setEditUserModal: (value: boolean) => void;
   userId: number | null;
   setUsers: React.Dispatch<React.SetStateAction<User[]>>;
-  setOpenMenuId: React.Dispatch<React.SetStateAction<number | null>>;
+  setOpenUserMenuId: React.Dispatch<React.SetStateAction<number | null>>;
 }) => {
 
   const [userToEdit, setUserToEdit] = useState<User | null>(null);
@@ -83,7 +83,7 @@ const EditModalWrapper = ({
           prevUsers.map((user) => (user.id === userId ? updatedUser : user))
         );
         setEditUserModal(false);
-        setOpenMenuId(null);
+        setOpenUserMenuId(null);
       } else {
         alert("Error updating user");
       }
@@ -94,7 +94,7 @@ const EditModalWrapper = ({
   };
 
   return (
-    <Modal setEditUserModal={setEditUserModal} setOpenMenuId={setOpenMenuId}>
+    <Modal setEditUserModal={setEditUserModal} setOpenUserMenuId={setOpenUserMenuId}>
       <form className={styles.edit_user_form} onSubmit={handleEditUser}>
         <label htmlFor="orgname">Organization name:</label>
         <input

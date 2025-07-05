@@ -11,7 +11,7 @@
 }
 .modalbox{
     width: 450px;
-    min-height: 570px;
+    min-height: 340px;
     max-height: 570px; 
     overflow-y: auto; 
     background-color: white;
