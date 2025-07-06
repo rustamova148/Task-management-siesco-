@@ -42,16 +42,17 @@ const AdminPanel = () => {
   const [taskId, setTaskId] = useState<number | null>(null);
   const [activeTab, setActiveTab] = useState<"users" | "tasks">("users");
 
+  const fetchUsers = async () => {
+    try {
+      const res = await fetch("http://localhost:3001/users");
+      const data = await res.json();
+      setUsers(data);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    }
+  };
+
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const res = await fetch("http://localhost:3001/users");
-        const data = await res.json();
-        setUsers(data);
-      } catch (error) {
-        console.error("Error fetching users:", error);
-      }
-    };
     fetchUsers();
   }, []);
 
@@ -232,7 +233,11 @@ const AdminPanel = () => {
                       <tr key={task.id}>
                         <td>{task.taskname}</td>
                         <td>{task.taskdesc}</td>
-                        <td>{task.assignedto}</td>
+                        <td>
+                        {users
+                        .filter(user => user.assignedTasks?.includes(task.id))
+                        .map(u => u.name).join(", ")}
+                        </td>
                         <td>{task.deadline}</td>
                         <td>{task.status}</td>
                         <td className={styles.actions_td}>
@@ -246,17 +251,6 @@ const AdminPanel = () => {
                           </button>
                           {openTaskMenuId === task.id && (
                             <ul className={styles.actions_options}>
-                              <li>
-                                <button
-                                  className={styles.actions_option}
-                                  // onClick={() => showEditModal(user.id)}
-                                >
-                                  <i
-                                    className={`fa-solid fa-user-plus ${styles.assign_icon}`}
-                                  ></i>
-                                  <span>Assign</span>
-                                </button>
-                              </li>
                               <li>
                                 <button
                                   className={styles.actions_option}
@@ -324,6 +318,7 @@ const AdminPanel = () => {
         setTasks={setTasks}
         tasks={tasks}
         userId={userId}
+        refreshUsers={fetchUsers}
         />
       )}
     </div>

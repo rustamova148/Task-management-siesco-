@@ -13,12 +13,14 @@ const UserAssignModalWrapper = ({
   setTasks,
   tasks,
   userId,
+  refreshUsers
 }: {
   setUserAssign: (value: boolean) => void;
   setOpenUserMenuId: React.Dispatch<React.SetStateAction<number | null>>;
   setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
   tasks: Task[];
   userId: number | null;
+  refreshUsers: () => void;
 }) => {
 
 const [selectedTasksIds, setSelectedTasksIds] = useState<number[]>([]);
@@ -66,6 +68,7 @@ const [selectedTasksIds, setSelectedTasksIds] = useState<number[]>([]);
   }
   setUserAssign(false);
   setOpenUserMenuId(null);
+  refreshUsers();
   }
 
   return (
