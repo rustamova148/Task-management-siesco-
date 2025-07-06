@@ -6,6 +6,7 @@ import EditModalWrapper from "../../components/EditModalWrapper/EditModalWrapper
 import TaskModalWrapper from "../../components/TaskModalWrapper/TaskModalWrapper";
 import TaskEditModalWrapper from "../../components/TaskEditModalWrapper/TaskEditModalWrapper";
 import UserAssignModalWrapper from "../../components/UserAssignModalWrapper/UserAssignModalWrapper";
+import AdminTable from "../../components/AdminTable/AdminTable";
 export interface User {
   id: number;
   name: string;
@@ -86,7 +87,7 @@ const AdminPanel = () => {
   const showUserAssignModal = (id: number) => {
     setUserAssign(true);
     setUserId(id);
-  }
+  };
   const toggleMenu = (id: number) => {
     setOpenUserMenuId((prev) => (prev === id ? null : id));
   };
@@ -138,40 +139,50 @@ const AdminPanel = () => {
                 Add user
               </button>
               <div className={styles.admin_table_container}>
-                <table className={styles.admin_table}>
-                  <thead>
-                    <tr>
-                      <th>Organization name</th>
-                      <th>User name</th>
-                      <th>User email</th>
-                      <th>User password</th>
-                      <th>Role</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {users.map((user) => (
-                      <tr key={user.id}>
-                        <td>{user.orgname}</td>
-                        <td>{user.name}</td>
-                        <td>{user.email}</td>
-                        <td>{user.password}</td>
-                        <td>{user.role}</td>
-                        <td className={styles.actions_td}>
+                <AdminTable
+                  data={users}
+                  rowKey={(user) => user.id}
+                  columns={[
+                    {
+                      key: "orgname",
+                      header: "Organization name",
+                      renderCell: (u) => u.orgname,
+                    },
+                    {
+                      key: "name",
+                      header: "User name",
+                      renderCell: (u) => u.name,
+                    },
+                    {
+                      key: "email",
+                      header: "User email",
+                      renderCell: (u) => u.email,
+                    },
+                    {
+                      key: "password",
+                      header: "User password",
+                      renderCell: (u) => u.password,
+                    },
+                    { key: "role", header: "Role", renderCell: (u) => u.role },
+                    {
+                      key: "actions",
+                      header: "Actions",
+                      renderCell: (u) => (
+                        <div className={styles.actions_td}>
                           <button
                             className={styles.actions_btn}
-                            onClick={() => toggleMenu(user.id)}
+                            onClick={() => toggleMenu(u.id)}
                           >
                             <i
                               className={`fa-solid fa-ellipsis ${styles.icon}`}
                             ></i>
                           </button>
-                          {openMenuId === user.id && (
+                          {openMenuId === u.id && (
                             <ul className={styles.actions_options}>
                               <li>
                                 <button
                                   className={styles.actions_option}
-                                  onClick={() => showUserAssignModal(user.id)}
+                                  onClick={() => showUserAssignModal(u.id)}
                                 >
                                   <i
                                     className={`fa-solid fa-user-plus ${styles.assign_icon}`}
@@ -182,7 +193,7 @@ const AdminPanel = () => {
                               <li>
                                 <button
                                   className={styles.actions_option}
-                                  onClick={() => showEditModal(user.id)}
+                                  onClick={() => showEditModal(u.id)}
                                 >
                                   <i
                                     className={`fa-solid fa-pen ${styles.edit_icon}`}
@@ -193,7 +204,7 @@ const AdminPanel = () => {
                               <li>
                                 <button
                                   className={styles.actions_option}
-                                  onClick={() => handleDeleteUser(user.id)}
+                                  onClick={() => handleDeleteUser(u.id)}
                                 >
                                   <i
                                     className={`fa-solid fa-trash ${styles.delete_icon}`}
@@ -203,11 +214,11 @@ const AdminPanel = () => {
                               </li>
                             </ul>
                           )}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                        </div>
+                      ),
+                    },
+                  ]}
+                />
               </div>
             </div>
           )}
@@ -217,44 +228,58 @@ const AdminPanel = () => {
                 Add task
               </button>
               <div className={styles.admin_table_container}>
-                <table className={styles.admin_table}>
-                  <thead>
-                    <tr>
-                      <th>Task name</th>
-                      <th>Task Description</th>
-                      <th>Assigned to</th>
-                      <th>Deadline</th>
-                      <th>Status</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {tasks.map((task) => (
-                      <tr key={task.id}>
-                        <td>{task.taskname}</td>
-                        <td>{task.taskdesc}</td>
-                        <td>
-                        {users
-                        .filter(user => user.assignedTasks?.includes(task.id))
-                        .map(u => u.name).join(", ")}
-                        </td>
-                        <td>{task.deadline}</td>
-                        <td>{task.status}</td>
-                        <td className={styles.actions_td}>
+                <AdminTable
+                  data={tasks}
+                  rowKey={(task) => task.id}
+                  columns={[
+                    {
+                      key: "taskname",
+                      header: "Task name",
+                      renderCell: (t) => t.taskname,
+                    },
+                    {
+                      key: "taskdesc",
+                      header: "Task Description",
+                      renderCell: (t) => t.taskdesc,
+                    },
+                    {
+                      key: "assignedto",
+                      header: "Assigned to",
+                      renderCell: (t) =>
+                        users
+                          .filter((u) => u.assignedTasks?.includes(t.id))
+                          .map((u) => u.name)
+                          .join(", "),
+                    },
+                    {
+                      key: "deadline",
+                      header: "Deadline",
+                      renderCell: (t) => t.deadline,
+                    },
+                    {
+                      key: "status",
+                      header: "Status",
+                      renderCell: (t) => t.status,
+                    },
+                    {
+                      key: "actions",
+                      header: "Actions",
+                      renderCell: (t) => (
+                        <div className={styles.actions_td}>
                           <button
                             className={styles.actions_btn}
-                            onClick={() => toggleTaskMenu(task.id)}
+                            onClick={() => toggleTaskMenu(t.id)}
                           >
                             <i
                               className={`fa-solid fa-ellipsis ${styles.icon}`}
                             ></i>
                           </button>
-                          {openTaskMenuId === task.id && (
+                          {openTaskMenuId === t.id && (
                             <ul className={styles.actions_options}>
                               <li>
                                 <button
                                   className={styles.actions_option}
-                                  onClick={() => showTaskEditModal(task.id)}
+                                  onClick={() => showTaskEditModal(t.id)}
                                 >
                                   <i
                                     className={`fa-solid fa-pen ${styles.edit_icon}`}
@@ -265,7 +290,7 @@ const AdminPanel = () => {
                               <li>
                                 <button
                                   className={styles.actions_option}
-                                  onClick={() => handleDeleteTask(task.id)}
+                                  onClick={() => handleDeleteTask(t.id)}
                                 >
                                   <i
                                     className={`fa-solid fa-trash ${styles.delete_icon}`}
@@ -275,11 +300,11 @@ const AdminPanel = () => {
                               </li>
                             </ul>
                           )}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                        </div>
+                      ),
+                    },
+                  ]}
+                />
               </div>
             </div>
           )}
@@ -312,13 +337,13 @@ const AdminPanel = () => {
         />
       )}
       {userAssign && (
-        <UserAssignModalWrapper 
-        setUserAssign={setUserAssign} 
-        setOpenUserMenuId={setOpenUserMenuId}
-        setTasks={setTasks}
-        tasks={tasks}
-        userId={userId}
-        refreshUsers={fetchUsers}
+        <UserAssignModalWrapper
+          setUserAssign={setUserAssign}
+          setOpenUserMenuId={setOpenUserMenuId}
+          setTasks={setTasks}
+          tasks={tasks}
+          userId={userId}
+          refreshUsers={fetchUsers}
         />
       )}
     </div>
