@@ -35,6 +35,15 @@
         "2347"
       ],
       "role": "user"
+    },
+    {
+      "id": "66c2",
+      "orgname": "Nezrin Tech",
+      "name": "Jale",
+      "email": "jale999@gmail.com",
+      "password": "jale123456",
+      "assignedTasks": [],
+      "role": "user"
     }
   ],
   "tasks": [

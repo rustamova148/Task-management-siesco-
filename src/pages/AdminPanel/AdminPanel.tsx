@@ -9,6 +9,7 @@ import TaskModalWrapper from "../../components/TaskModalWrapper/TaskModalWrapper
 import TaskEditModalWrapper from "../../components/TaskEditModalWrapper/TaskEditModalWrapper";
 import UserAssignModalWrapper from "../../components/UserAssignModalWrapper/UserAssignModalWrapper";
 import AdminTable from "../../components/AdminTable/AdminTable";
+import Planner from "../../components/Planner/Planner";
 
 export interface User {
   id: number;
@@ -345,6 +346,11 @@ const AdminPanel = () => {
                     },
                   ]}
                 />
+              </div>
+          )}
+          {activeUserTab === "planner" && user?.role === "user" && (
+              <div className={styles.admin_table_container}>
+                <Planner />
               </div>
           )}
         </div>

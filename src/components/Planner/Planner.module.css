@@ -1,0 +1,44 @@
+.planner_parts{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.status_todo_head{
+    background-color: #00C4FB;
+    color: white;
+    padding: 10px 59px;
+    border-radius: 8px;
+}
+.status_body{
+    min-height: 80vh;
+    border-left: 1px dashed rgb(255, 255, 255);
+    padding-left: 7px;
+    padding-top: 7px;
+}
+.status_inprog_head{
+    background-color: #47D1E2;
+    color: white;
+    padding: 10px 59px;
+    border-radius: 8px;
+}
+.status_review_head{
+    background-color: #75D900;
+    color: white;
+    padding: 10px 59px;
+    border-radius: 8px;
+}
+.status_comp_head{
+    background-color: #FFAB00;
+    color: white;
+    padding: 10px 59px;
+    border-radius: 8px;
+}
+.status_def_head{
+    background-color: #FF5752;
+    color: white;
+    padding: 10px 59px;
+    border-radius: 8px;
+}
+.status_count{
+    color: rgb(253, 245, 245);
+}

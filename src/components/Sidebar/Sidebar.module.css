@@ -1,6 +1,6 @@
 .sidebar_container{
     width: 15%;
-    height: 100vh;
+    min-height: 95vh;
     background-color: #e5ecf7;
     display: flex;
     flex-direction: column;
@@ -14,12 +14,13 @@
 .profile_info{
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
-.profile_info span:first-child{
+.profile_info p:first-child{
     font-weight: 600;
     font-size: 20px;
 }
-.profile_info span:nth-child(2){
+.profile_info p:nth-child(2){
     color: rgb(109, 108, 108);
 }
 .profile_photo{

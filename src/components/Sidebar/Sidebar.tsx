@@ -72,8 +72,8 @@ const Sidebar = ({ activeTab, setActiveTab, activeUserTab, setActiveUserTab }: T
 
       <div className={styles.profilebox}>
         <div className={styles.profile_info}>
-          <span>{user?.name}</span>
-          <span>({user?.role})</span>
+          <p>{user?.name}</p>
+          <p>({user?.role})</p>
         </div>
         <button className={styles.logout_btn} onClick={handleLogout}>
           <i className="fa-solid fa-arrow-right-from-bracket"></i>
