@@ -30,20 +30,28 @@ const UserAssignModalWrapper = ({
 }) => {
 
 const [selectedTasksIds, setSelectedTasksIds] = useState<number[]>([]);
+const [alreadyAssignedIds, setAlreadyAssignedIds] = useState<number[]>([]);
 
   useEffect(() => {
-    const fetchTasks = async () => {
-      try {
-        const res = await fetch("http://localhost:3001/tasks");
-        const data = await res.json();
-        setTasks(data);
-      } catch (err) {
-        console.log("Error");
-      }
-    };
-    fetchTasks();
+    const fetchData = async () => {
+    try {
+      const tasksRes = await fetch("http://localhost:3001/tasks");
+      const tasksData = await tasksRes.json();
+      setTasks(tasksData);
 
-  }, []);
+      if (userId !== null) {
+        const userRes = await fetch(`http://localhost:3001/users/${userId}`);
+        const userData = await userRes.json();
+        setAlreadyAssignedIds(userData.assignedTasks || []);
+      }
+    } catch (err) {
+      console.log("Error fetching data");
+    }
+  };
+
+  fetchData();
+
+  }, [userId]);
 
   const options: Option[] = tasks
   .map((task) => ({
@@ -60,8 +68,8 @@ const [selectedTasksIds, setSelectedTasksIds] = useState<number[]>([]);
   try{
   const res = await fetch(`http://localhost:3001/users/${userId}`);
   const data = await res.json();
-  
   data.assignedTasks = [...data.assignedTasks, ...selectedTasksIds];
+  setAlreadyAssignedIds(data.assignedTasks);
 
   await fetch(`http://localhost:3001/users/${userId}`, {
   method: "PATCH",
@@ -85,7 +93,7 @@ const [selectedTasksIds, setSelectedTasksIds] = useState<number[]>([]);
           closeMenuOnSelect={false}
           components={animatedComponents}
           isMulti
-          options={options.filter((opt: Option) => selectedTasksIds.includes(opt.value))}
+          options={options.filter((opt: Option) => !alreadyAssignedIds.includes(opt.value))}
           onChange={(selected: MultiValue<Option>) => {
           const selectedIds = selected ? selected.map((opt: Option) => opt.value) : [];
           console.log("Seçilmişlər:", selectedIds);

@@ -20,7 +20,8 @@
       "password": "nergiz123456",
       "assignedTasks": [
         "2347",
-        "47a9"
+        "47a9",
+        "8c21"
       ],
       "role": "user"
     },
@@ -30,9 +31,7 @@
       "name": "Lale",
       "email": "lale77@gmail.com",
       "password": "lale123456",
-      "assignedTasks": [
-        
-      ],
+      "assignedTasks": [],
       "role": "user"
     }
   ],
