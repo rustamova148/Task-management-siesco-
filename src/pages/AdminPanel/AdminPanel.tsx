@@ -47,7 +47,8 @@ const AdminPanel = () => {
     try {
       const res = await fetch("http://localhost:3001/users");
       const data = await res.json();
-      setUsers(data);
+      const filteredData = data.filter((d: User) => d.role !== "admin");
+      setUsers(filteredData);
     } catch (error) {
       console.error("Error fetching users:", error);
     }
