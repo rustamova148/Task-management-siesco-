@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../redux/app/store";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import styles from "./AdminPanel.module.css";
 import UsersModalWrapper from "../../components/UsersModalWrapper/UsersModalWrapper";
@@ -7,6 +9,7 @@ import TaskModalWrapper from "../../components/TaskModalWrapper/TaskModalWrapper
 import TaskEditModalWrapper from "../../components/TaskEditModalWrapper/TaskEditModalWrapper";
 import UserAssignModalWrapper from "../../components/UserAssignModalWrapper/UserAssignModalWrapper";
 import AdminTable from "../../components/AdminTable/AdminTable";
+
 export interface User {
   id: number;
   name: string;
@@ -30,6 +33,8 @@ export interface Task {
 }
 
 const AdminPanel = () => {
+  const user = useSelector((state: RootState) => state.user.currentUser);
+
   const [userModal, setUserModal] = useState(false);
   const [editUserModal, setEditUserModal] = useState(false);
   const [editTaskModal, setEditTaskModal] = useState(false);
@@ -42,6 +47,7 @@ const AdminPanel = () => {
   const [userId, setUserId] = useState<number | null>(null);
   const [taskId, setTaskId] = useState<number | null>(null);
   const [activeTab, setActiveTab] = useState<"users" | "tasks">("users");
+  const [activeUserTab, setActiveUserTab] = useState<"mytasks" | "planner">("mytasks");
 
   const fetchUsers = async () => {
     try {
@@ -132,9 +138,11 @@ const AdminPanel = () => {
   return (
     <div className={styles.admin_panel_container}>
       <div className={styles.general_container}>
-        <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+        <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} 
+        activeUserTab={activeUserTab}
+        setActiveUserTab={setActiveUserTab} />
         <div className={styles.tables_part_container}>
-          {activeTab === "users" && (
+          {activeTab === "users" && user?.role === "admin" && (
             <div>
               <button className={styles.adduserbtn} onClick={showUserModal}>
                 Add user
@@ -223,7 +231,7 @@ const AdminPanel = () => {
               </div>
             </div>
           )}
-          {activeTab === "tasks" && (
+          {activeTab === "tasks" && user?.role === "admin" && (
             <div>
               <button className={styles.adduserbtn} onClick={showTaskModal}>
                 Add task
@@ -308,6 +316,36 @@ const AdminPanel = () => {
                 />
               </div>
             </div>
+          )}
+          {activeUserTab === "mytasks" && user?.role === "user" && (
+              <div className={styles.admin_table_container}>
+                <AdminTable
+                  data={tasks.filter(task => user?.assignedTasks.includes(task.id))}
+                  rowKey={(task) => task.id}
+                  columns={[
+                    {
+                      key: "taskname",
+                      header: "Task name",
+                      renderCell: (t) => t.taskname,
+                    },
+                    {
+                      key: "taskdesc",
+                      header: "Task Description",
+                      renderCell: (t) => t.taskdesc,
+                    },
+                    {
+                      key: "deadline",
+                      header: "Deadline",
+                      renderCell: (t) => t.deadline,
+                    },
+                    {
+                      key: "status",
+                      header: "Status",
+                      renderCell: (t) => t.status,
+                    },
+                  ]}
+                />
+              </div>
           )}
         </div>
       </div>

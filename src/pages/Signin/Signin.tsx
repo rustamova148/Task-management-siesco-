@@ -37,7 +37,7 @@ const Signin = () => {
         if (user.role === "admin") {
           navigate("/adminpanel");
         } else {
-          navigate("/userdash");
+          navigate("/adminpanel");
         }
       } else {
         alert("Belə bir istifadəçi tapılmadı");

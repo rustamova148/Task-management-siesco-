@@ -6,11 +6,12 @@ import { Routes, Route } from 'react-router-dom';
 import Signin from './pages/Signin/Signin';
 import Signup from './pages/Signup/Signup';
 import AdminPanel from './pages/AdminPanel/AdminPanel';
-import UserDashboard from './pages/UserDashboard/UserDashboard';
 
 const AppContent = () => {
+
 const dispatch = useDispatch();
 const navigate = useNavigate();
+
 useEffect(() => {
 const storedUser = localStorage.getItem("user");
 if(storedUser){
@@ -18,19 +19,19 @@ if(storedUser){
   if(JSON.parse(storedUser).role === 'admin'){
   navigate('adminpanel');
   }else{
-  navigate('/userdash');
+  navigate('/adminpanel');
   }
 }else{
   navigate('/signin');
 }
 },[])
+
   return (
     <div>
       <Routes>
         <Route path='signin' element={<Signin />} />
         <Route path='signup' element={<Signup />} />
         <Route path='adminpanel' element={<AdminPanel />} />
-        <Route path='userdash' element={<UserDashboard />} />
       </Routes>
     </div>
   )

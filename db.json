@@ -31,7 +31,9 @@
       "name": "Lale",
       "email": "lale77@gmail.com",
       "password": "lale123456",
-      "assignedTasks": [],
+      "assignedTasks": [
+        "2347"
+      ],
       "role": "user"
     }
   ],

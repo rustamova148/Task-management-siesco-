@@ -7,9 +7,11 @@ import { useNavigate } from "react-router-dom";
 interface TabsProps {
   activeTab: "users" | "tasks";
   setActiveTab: React.Dispatch<React.SetStateAction<"users" | "tasks">>;
+  activeUserTab: "mytasks" | "planner";
+  setActiveUserTab: React.Dispatch<React.SetStateAction<"mytasks" | "planner">>;
 }
 
-const Sidebar = ({ activeTab, setActiveTab }: TabsProps) => {
+const Sidebar = ({ activeTab, setActiveTab, activeUserTab, setActiveUserTab }: TabsProps) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state: RootState) => state.user.currentUser);
@@ -23,24 +25,49 @@ const Sidebar = ({ activeTab, setActiveTab }: TabsProps) => {
     <div className={styles.sidebar_container}>
       <p className={styles.sidebar_head}>Task Manager</p>
       <div className={styles.tabWrapper}>
-        <button
-          className={`${styles.tabBtn} ${
-            activeTab === "users" ? styles.active : ""
-          }`}
-          onClick={() => setActiveTab("users")}
-        >
-          <i className="fa-solid fa-users"></i>
-          <span>Users</span>
-        </button>
-        <button
-          className={`${styles.tabBtn} ${
-            activeTab === "tasks" ? styles.active : ""
-          }`}
-          onClick={() => setActiveTab("tasks")}
-        >
-          <i className="fa-solid fa-list-check"></i>
-          <span>Tasks</span>
-        </button>
+        {user?.role === "admin" ? (
+          <div className={styles.tabContainer}>
+            <button
+              className={`${styles.tabBtn} ${
+                activeTab === "users" ? styles.active : ""
+              }`}
+              onClick={() => setActiveTab("users")}
+            >
+              <i className="fa-solid fa-users"></i>
+              <span>Users</span>
+            </button>
+            <button
+              className={`${styles.tabBtn} ${
+                activeTab === "tasks" ? styles.active : ""
+              }`}
+              onClick={() => setActiveTab("tasks")}
+            >
+              <i className="fa-solid fa-list-check"></i>
+              <span>Tasks</span>
+            </button>
+          </div>
+        ) : (
+          <div>
+            <button
+              className={`${styles.tabBtn} ${
+                activeUserTab === "mytasks" ? styles.active : ""
+              }`}
+              onClick={() => setActiveUserTab("mytasks")}
+            >
+              <i className="fa-solid fa-list-check"></i>
+              <span>My Tasks</span>
+            </button>
+            <button
+              className={`${styles.tabBtn} ${
+                activeUserTab === "planner" ? styles.active : ""
+              }`}
+              onClick={() => setActiveUserTab("planner")}
+            >
+              <i className="fa-solid fa-clipboard-list"></i>
+              <span>Planner</span>
+            </button>
+          </div>
+        )}
       </div>
 
       <div className={styles.profilebox}>
