@@ -1,11 +1,17 @@
 import Modal from "../Modal/Modal";
 import { useState, useEffect } from "react";
+import type { MultiValue } from "react-select";
 import styles from "./UserAssignModalWrapper.module.css";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import type { Task } from "../../pages/AdminPanel/AdminPanel";
 
 const animatedComponents = makeAnimated();
+
+type Option = {
+  value: number;
+  label: string;
+};
 
 const UserAssignModalWrapper = ({
   setUserAssign,
@@ -39,7 +45,7 @@ const [selectedTasksIds, setSelectedTasksIds] = useState<number[]>([]);
 
   }, []);
 
-  const options = tasks
+  const options: Option[] = tasks
   .map((task) => ({
     value: task.id,
     label: task.taskname,
@@ -50,6 +56,7 @@ const [selectedTasksIds, setSelectedTasksIds] = useState<number[]>([]);
   e.preventDefault();
  
   if(userId === null) return;
+
   try{
   const res = await fetch(`http://localhost:3001/users/${userId}`);
   const data = await res.json();
@@ -74,14 +81,13 @@ const [selectedTasksIds, setSelectedTasksIds] = useState<number[]>([]);
   return (
     <Modal setUserAssign={setUserAssign} setOpenUserMenuId={setOpenUserMenuId}>
       <form onSubmit={handleAssignTasks}>
-        <Select
+        <Select<Option, true>
           closeMenuOnSelect={false}
           components={animatedComponents}
-          value={options.filter(opt => selectedTasksIds.includes(opt.value))}
           isMulti
-          options={options}
-          onChange={(selected) => {
-          const selectedIds = selected ? selected.map(opt => opt.value) : [];
+          options={options.filter((opt: Option) => selectedTasksIds.includes(opt.value))}
+          onChange={(selected: MultiValue<Option>) => {
+          const selectedIds = selected ? selected.map((opt: Option) => opt.value) : [];
           console.log("Seçilmişlər:", selectedIds);
           setSelectedTasksIds(selectedIds);
         }}
