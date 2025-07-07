@@ -14,6 +14,9 @@
     border-left: 1px dashed rgb(255, 255, 255);
     padding-left: 7px;
     padding-top: 7px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
 }
 .status_inprog_head{
     background-color: #47D1E2;
@@ -41,4 +44,23 @@
 }
 .status_count{
     color: rgb(253, 245, 245);
+}
+.task_card{
+    background-color: white;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+.task_title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 4px;
+}
+
+.task_deadline {
+  font-size: 13px;
+  color: #888;
 }

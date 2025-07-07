@@ -350,7 +350,7 @@ const AdminPanel = () => {
           )}
           {activeUserTab === "planner" && user?.role === "user" && (
               <div className={styles.admin_table_container}>
-                <Planner />
+                <Planner tasks={tasks} />
               </div>
           )}
         </div>

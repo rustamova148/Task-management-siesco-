@@ -9,14 +9,14 @@ setTasks: React.Dispatch<React.SetStateAction<Task[]>>})=> {
 type FormDataType = {
     taskname: string;
     taskdesc: string;
-    assignedto: string;
+    // assignedto: string;
     deadline: string;
     status: string;
 }
 const [formData, setFormData] = useState<FormDataType>({
     taskname: "",
     taskdesc: "",
-    assignedto: "",
+    // assignedto: "",
     deadline: "",
     status: "",
 })
@@ -32,9 +32,9 @@ const validate = () => {
   if (!formData.taskdesc.trim()) {
     newErrors.taskdesc= "Description is required";
   }
-  if (!formData.assignedto.trim()) {
-    newErrors.assignedto = "Assign is required";
-  }
+  // if (!formData.assignedto.trim()) {
+  //   newErrors.assignedto = "Assign is required";
+  // }
   if (!formData.deadline.trim()) {
     newErrors.deadline = "Deadline is required";
   }
@@ -68,7 +68,7 @@ const handleAddTask = async (e: React.FormEvent<HTMLFormElement>) => {
         body: JSON.stringify({
             taskname: formData.taskname,
             taskdesc: formData.taskdesc,
-            assignedto: formData.assignedto,
+            // assignedto: formData.assignedto,
             deadline: formData.deadline,
             status: formData.status,
         })
@@ -111,18 +111,7 @@ const handleAddTask = async (e: React.FormEvent<HTMLFormElement>) => {
           onChange={handleChange}
         />
         {errors.taskdesc && <span style={{ color: "red", fontSize: "11px", marginTop: "-10px" }}>{errors.taskdesc}</span>}
-
-        <label htmlFor="assignedto">Assigned To:</label>
-        <input
-          type="text"
-          name="assignedto"
-          id="assignedto"
-          className={`${styles.tasks_input} ${errors.assignedto ? styles.error : ""}`}
-          value={formData.assignedto}
-          onChange={handleChange}
-        />
-        {errors.assignedto && <span style={{ color: "red", fontSize: "11px", marginTop: "-10px" }}>{errors.assignedto}</span>}
-
+        
         <label htmlFor="deadline">Deadline:</label>
         <input
           type="date"

@@ -1,6 +1,10 @@
-import styles from "./Planner.module.css"
+import styles from "./Planner.module.css";
+import type { Task } from "../../pages/AdminPanel/AdminPanel";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../redux/app/store";
 
-const Planner = () => {
+const Planner = ({tasks}:{tasks: Task[]}) => {
+const user = useSelector((state:RootState) => state.user.currentUser);
     return(
         <div className={styles.planner}>
             <div className={styles.planner_parts}>
@@ -9,7 +13,14 @@ const Planner = () => {
                       To do <span className={styles.status_count}>(0)</span>
                     </div>
                     <div className={styles.status_body}>
-                        body
+                    {tasks.filter(task => user?.assignedTasks?.includes(task.id))
+                    .filter(t => t.status === "To do")
+                    .map(t => (
+                    <div className={styles.task_card}>
+                    <p className={styles.task_title}>{t.taskname}</p>
+                    <p className={styles.task_deadline}>Deadline: {t.deadline}</p>
+                    </div>
+                    ))}
                     </div>
                 </div>
                 <div>
