@@ -52,7 +52,7 @@ const AdminPanel = () => {
 
   const fetchUsers = async () => {
     try {
-      const res = await fetch("http://task-management-siesco-13-backend.onrender.com/users");
+      const res = await fetch("https://task-management-siesco-13-backend.onrender.com/users");
       const data = await res.json();
       const filteredData = data.filter((d: User) => d.role !== "admin");
       setUsers(filteredData);
@@ -67,7 +67,7 @@ const AdminPanel = () => {
 
   const fetchTasks = async () => {
     try {
-      const res = await fetch("http://task-management-siesco-13-backend.onrender.com/tasks");
+      const res = await fetch("https://task-management-siesco-13-backend.onrender.com/tasks");
       const data = await res.json();
       setTasks(data);
     } catch (error) {
@@ -104,7 +104,7 @@ const AdminPanel = () => {
   };
   const handleDeleteUser = async (id: number) => {
     try {
-      const res = await fetch(`http://task-management-siesco-13-backend.onrender.com/users/${id}`, {
+      const res = await fetch(`https://task-management-siesco-13-backend.onrender.com/users/${id}`, {
         method: "DELETE",
       });
 
@@ -121,7 +121,7 @@ const AdminPanel = () => {
   };
   const handleDeleteTask = async (id: number) => {
     try {
-      const res = await fetch(`http://task-management-siesco-13-backend.onrender.com/tasks/${id}`, {
+      const res = await fetch(`https://task-management-siesco-13-backend.onrender.com/tasks/${id}`, {
         method: "DELETE",
       });
 

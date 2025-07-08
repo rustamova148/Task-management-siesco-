@@ -35,12 +35,12 @@ const [alreadyAssignedIds, setAlreadyAssignedIds] = useState<number[]>([]);
   useEffect(() => {
     const fetchData = async () => {
     try {
-      const tasksRes = await fetch("http://task-management-siesco-13-backend.onrender.com/tasks");
+      const tasksRes = await fetch("https://task-management-siesco-13-backend.onrender.com/tasks");
       const tasksData = await tasksRes.json();
       setTasks(tasksData);
 
       if (userId !== null) {
-        const userRes = await fetch(`http://task-management-siesco-13-backend.onrender.com/users/${userId}`);
+        const userRes = await fetch(`https://task-management-siesco-13-backend.onrender.com/users/${userId}`);
         const userData = await userRes.json();
         setAlreadyAssignedIds(userData.assignedTasks || []);
       }
@@ -66,12 +66,12 @@ const [alreadyAssignedIds, setAlreadyAssignedIds] = useState<number[]>([]);
   if(userId === null) return;
 
   try{
-  const res = await fetch(`http://task-management-siesco-13-backend.onrender.com/users/${userId}`);
+  const res = await fetch(`https://task-management-siesco-13-backend.onrender.com/users/${userId}`);
   const data = await res.json();
   data.assignedTasks = [...data.assignedTasks, ...selectedTasksIds];
   setAlreadyAssignedIds(data.assignedTasks);
 
-  await fetch(`http://task-management-siesco-13-backend.onrender.com/users/${userId}`, {
+  await fetch(`https://task-management-siesco-13-backend.onrender.com/users/${userId}`, {
   method: "PATCH",
   headers: {
     "Content-Type": "application/json",
