@@ -20,7 +20,7 @@ server.use(middlewares);
 server.use(express.static(path.join(__dirname, 'dist')));
 
 // API endpoint
-server.use('/api', router);
+server.use(router);
 
 // Frontend router dəstəyi üçün (SPA)
 server.get('*', (req, res) => {
