@@ -75,7 +75,6 @@ const TaskEditModalWrapper = ({
         body: JSON.stringify({
           taskname: formData.taskname,
           taskdesc: formData.taskdesc,
-          assignedto: formData.assignedto,
           deadline: formData.deadline,
           status: formData.status,
         }),
@@ -119,19 +118,9 @@ const TaskEditModalWrapper = ({
           onChange={handleChange}
         />
 
-        <label htmlFor="edassignedto">Assigned to:</label>
-        <input
-          type="text"
-          name="assignedto"
-          id="edassignedto"
-          value={formData.assignedto}
-          className={styles.edit_input}
-          onChange={handleChange}
-        />
-
         <label htmlFor="eddeadline">Deadline:</label>
         <input
-          type="password"
+          type="date"
           name="deadline"
           id="eddeadline"
           value={formData.deadline}

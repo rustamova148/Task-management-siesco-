@@ -19,9 +19,7 @@
       "email": "nergiz889@gmail.com",
       "password": "nergiz123456",
       "assignedTasks": [
-        "2347",
-        "47a9",
-        "8c21"
+        "2347"
       ],
       "role": "user"
     },
@@ -32,8 +30,7 @@
       "email": "lale77@gmail.com",
       "password": "lale123456",
       "assignedTasks": [
-        "2347",
-        "47a9"
+        "8c21"
       ],
       "role": "user"
     },
@@ -43,7 +40,9 @@
       "name": "Jale",
       "email": "jale999@gmail.com",
       "password": "jale123456",
-      "assignedTasks": [],
+      "assignedTasks": [
+        "47a9"
+      ],
       "role": "user"
     }
   ],
@@ -52,23 +51,20 @@
       "id": "2347",
       "taskname": "Header",
       "taskdesc": "Create reusable component",
-      "assignedto": "Nergiz",
       "deadline": "2025-07-10",
-      "status": "To do"
+      "status": "Completed"
     },
     {
       "id": "47a9",
       "taskname": "Footer",
       "taskdesc": "Create resuable footer",
-      "assignedto": "Nergiz",
       "deadline": "2025-07-15",
-      "status": "To do"
+      "status": "Review"
     },
     {
       "id": "8c21",
       "taskname": "Section",
       "taskdesc": "Section part",
-      "assignedto": "Nergiz",
       "deadline": "2025-07-23",
       "status": "To do"
     }

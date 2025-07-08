@@ -6,7 +6,31 @@
 .status_todo_head{
     background-color: #00C4FB;
     color: white;
-    padding: 10px 59px;
+    padding: 10px 57px;
+    border-radius: 8px;
+}
+.status_inprogress_head{
+    background-color: #47D1E2;
+    color: white;
+    padding: 10px 57px;
+    border-radius: 8px;
+}
+.status_review_head{
+    background-color: #75D900;
+    color: white;
+    padding: 10px 57px;
+    border-radius: 8px;
+}
+.status_completed_head{
+    background-color: #FFAB00;
+    color: white;
+    padding: 10px 57px;
+    border-radius: 8px;
+}
+.status_deferred_head{
+    background-color: #FF5752;
+    color: white;
+    padding: 10px 57px;
     border-radius: 8px;
 }
 .status_body{
@@ -17,30 +41,6 @@
     display: flex;
     flex-direction: column;
     gap: 7px;
-}
-.status_inprog_head{
-    background-color: #47D1E2;
-    color: white;
-    padding: 10px 59px;
-    border-radius: 8px;
-}
-.status_review_head{
-    background-color: #75D900;
-    color: white;
-    padding: 10px 59px;
-    border-radius: 8px;
-}
-.status_comp_head{
-    background-color: #FFAB00;
-    color: white;
-    padding: 10px 59px;
-    border-radius: 8px;
-}
-.status_def_head{
-    background-color: #FF5752;
-    color: white;
-    padding: 10px 59px;
-    border-radius: 8px;
 }
 .status_count{
     color: rgb(253, 245, 245);

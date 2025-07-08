@@ -65,16 +65,16 @@ const AdminPanel = () => {
     fetchUsers();
   }, []);
 
+  const fetchTasks = async () => {
+    try {
+      const res = await fetch("http://localhost:3001/tasks");
+      const data = await res.json();
+      setTasks(data);
+    } catch (error) {
+      console.error("Error fetching tasks:", error);
+    }
+  };
   useEffect(() => {
-    const fetchTasks = async () => {
-      try {
-        const res = await fetch("http://localhost:3001/tasks");
-        const data = await res.json();
-        setTasks(data);
-      } catch (error) {
-        console.error("Error fetching tasks:", error);
-      }
-    };
     fetchTasks();
   }, []);
 
@@ -136,6 +136,7 @@ const AdminPanel = () => {
       console.error("Error deleting task:", error);
     }
   };
+
   return (
     <div className={styles.admin_panel_container}>
       <div className={styles.general_container}>
@@ -350,7 +351,7 @@ const AdminPanel = () => {
           )}
           {activeUserTab === "planner" && user?.role === "user" && (
               <div className={styles.admin_table_container}>
-                <Planner tasks={tasks} />
+                <Planner tasks={tasks} refreshTasks={fetchTasks} />
               </div>
           )}
         </div>
