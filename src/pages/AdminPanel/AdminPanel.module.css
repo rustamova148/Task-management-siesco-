@@ -16,7 +16,8 @@
 
 .tables_part_container {
   flex: 1;
-  background-color: #bdd3f3;
+  background-image: url('/src/assets/backphoto.png');
+  background-size: cover;
   border-radius: 8px;
   padding: 25px;
   box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
@@ -26,7 +27,7 @@
 
 .adduserbtn {
   align-self: flex-start;
-  background-color: #3b82f6; 
+  background-color: #C3B1E1;
   color: white;
   border: none;
   padding: 10px 18px;
@@ -38,7 +39,7 @@
   transition: background-color 0.3s ease;
 }
 .adduserbtn:hover {
-  background-color: #2563eb;
+  background-color: #D6C3F9;
 }
 
 .admin_table_container {

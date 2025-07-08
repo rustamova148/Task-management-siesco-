@@ -16,7 +16,6 @@ type FormDataType = {
 const [formData, setFormData] = useState<FormDataType>({
     taskname: "",
     taskdesc: "",
-    // assignedto: "",
     deadline: "",
     status: "",
 })
@@ -32,9 +31,6 @@ const validate = () => {
   if (!formData.taskdesc.trim()) {
     newErrors.taskdesc= "Description is required";
   }
-  // if (!formData.assignedto.trim()) {
-  //   newErrors.assignedto = "Assign is required";
-  // }
   if (!formData.deadline.trim()) {
     newErrors.deadline = "Deadline is required";
   }
@@ -68,7 +64,6 @@ const handleAddTask = async (e: React.FormEvent<HTMLFormElement>) => {
         body: JSON.stringify({
             taskname: formData.taskname,
             taskdesc: formData.taskdesc,
-            // assignedto: formData.assignedto,
             deadline: formData.deadline,
             status: formData.status,
         })

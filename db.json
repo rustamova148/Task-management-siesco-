@@ -30,7 +30,8 @@
       "email": "lale77@gmail.com",
       "password": "lale123456",
       "assignedTasks": [
-        "8c21"
+        "8c21",
+        "59cd"
       ],
       "role": "user"
     },
@@ -52,7 +53,7 @@
       "taskname": "Header",
       "taskdesc": "Create reusable component",
       "deadline": "2025-07-10",
-      "status": "Completed"
+      "status": "In progress"
     },
     {
       "id": "47a9",
@@ -66,6 +67,13 @@
       "taskname": "Section",
       "taskdesc": "Section part",
       "deadline": "2025-07-23",
+      "status": "Review"
+    },
+    {
+      "id": "59cd",
+      "taskname": "Sidebar",
+      "taskdesc": "Sidebar responsiveness",
+      "deadline": "2025-07-18",
       "status": "To do"
     }
   ]
