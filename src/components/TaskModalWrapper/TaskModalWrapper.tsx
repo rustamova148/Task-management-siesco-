@@ -56,7 +56,7 @@ const handleAddTask = async (e: React.FormEvent<HTMLFormElement>) => {
     return;
     }
     try{
-        const res = await fetch("http://localhost:3001/tasks", {
+        const res = await fetch("http://task-management-siesco-13-backend.onrender.com/tasks", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

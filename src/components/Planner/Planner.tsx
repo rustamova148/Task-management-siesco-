@@ -48,7 +48,7 @@ const Planner: React.FC<PlannerProps> = ({ tasks, refreshTasks }) => {
     );
     // Burada backend update əməliyyatı
     try {
-    const res = await fetch(`http://localhost:3001/tasks/${taskId}`, {
+    const res = await fetch(`http://task-management-siesco-13-backend.onrender.com/tasks/${taskId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

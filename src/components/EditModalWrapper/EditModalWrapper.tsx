@@ -37,7 +37,7 @@ const EditModalWrapper = ({
   useEffect(() => {
     const fetchUserById = async (id: number) => {
       try {
-        const res = await fetch(`http://localhost:3001/users/${id}`);
+        const res = await fetch(`http://task-management-siesco-13-backend.onrender.com/users/${id}`);
         if (!res.ok) throw new Error("User not found");
         const user = await res.json();
         setUserToEdit(user);
@@ -65,7 +65,7 @@ const EditModalWrapper = ({
     if (userId === null) return;
 
     try {
-      const res = await fetch(`http://localhost:3001/users/${userId}`, {
+      const res = await fetch(`http://task-management-siesco-13-backend.onrender.com/users/${userId}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
