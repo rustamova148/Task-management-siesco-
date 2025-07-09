@@ -1,70 +1,99 @@
-# React + TypeScript + Vite
+# 📋 Task Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Bu layihə sadə bir **tapşırıq idarəetmə** sistemidir. İstifadəçi rolları əsasında (Admin və User) fərqli funksionallıqlara malikdir. Layihədə `json-server` istifadə olunduğu üçün datalar yalnız lokalda görünür.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](httpss://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babelhttppspss://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](httpss://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWChttppspss://swc.rs/) for Fast Refresh
+## 🚀 Texnologiyalar
 
-## Expanding the ESLint configuration
+- React
+- TypeScript
+- Redux Toolkit
+- React Router
+- json-server
+- CSS Modules
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🛠️ Quraşdırma (Local Setup)
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+1. Layihəni klonlayın:
+   ```bash
+   git clone https://github.com/senin-username/task-management.git
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+2. Əlavə olaraq `json-server`-i qlobal olaraq quraşdırın (əgər yoxdursa):
+   ```bash
+   npm install -g json-server
+   ```
+
+3. `json-server`-i işə salın:
+   ```bash
+   json-server --watch db.json --port 3001
+   ```
+
+4. Frontend-i işə salın:
+   ```bash
+   npm install
+   npm run dev
+   ```
+
+---
+
+## 👥 İstifadəçi Rolları
+
+### 🔐 Admin
+
+- Qeydiyyatdan keçə bilər.
+- Yeni user-lər əlavə edə bilər.
+- Hər user üçün **task əlavə edə**, **edit edə**, **silə** bilər.
+- User və task məlumatlarını ayrı-ayrı cədvəllərdə görə bilər.
+- Tapşırıqların statuslarını izləyə bilər.
+
+### 👤 User
+
+- Öz hesabına daxil ola bilər.
+- Ona təyin edilən task-ları görə bilər.
+- Task-ları drag-and-drop ilə aşağıdakı statuslar arasında keçə bilər:
+  - `To Do`
+  - `In Progress`
+  - `Review`
+  - `Completed`
+  - `Deferred`
+
+---
+
+## ❗Qeyd
+
+Layihə `json-server` üzərindən işlədiyi üçün **deploy edildikdə datalar görünməyəcək**. Dataların işləməsi üçün lokalda aşağıdakı komandanı istifadə etməlisiniz:
+
+```bash
+json-server --watch db.json --port 3001
 ```
 
-You can also install [eslint-plugin-react-x](httpss://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-domhttppspss://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 📂 Qovluq Strukturu (qısa)
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
-# Task-management-siesco-
+├── src/
+│   ├── components/
+│   ├── pages/
+│   ├── redux/
+│   ├── App.tsx
+│   └── main.tsx
+├── db.json
+└── README.md
+```
+
+---
+
+## 🧑‍💻 Müəllif
+
+- [@NezrinRustemova](https://github.com/senin-username)
+
+---
+
+## 🌟 Əlavə
+
+Pull request-lər açıqdır. Layihəni daha da inkişaf etdirmək istəsəniz, məmnuniyyətlə baxılar 😊
