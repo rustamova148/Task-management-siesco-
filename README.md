@@ -19,7 +19,7 @@ Bu layihə sadə bir **tapşırıq idarəetmə** sistemidir. İstifadəçi rolla
 
 1. Layihəni klonlayın:
    ```bash
-   git clone https://github.com/senin-username/task-management.git
+   git clone https://github.com/rustamova148/task-management.git
    ```
 
 2. Əlavə olaraq `json-server`-i qlobal olaraq quraşdırın (əgər yoxdursa):
@@ -90,7 +90,7 @@ json-server --watch db.json --port 3001
 
 ## 🧑‍💻 Müəllif
 
-- [@NezrinRustemova](https://github.com/senin-username)
+- [@NezrinRustemova](https://github.com/rustamova148)
 
 ---
 
