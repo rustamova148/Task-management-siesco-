@@ -19,7 +19,7 @@ Bu layihə sadə bir **tapşırıq idarəetmə** sistemidir. İstifadəçi rolla
 
 1. Layihəni klonlayın:
    ```bash
-   git clone https://github.com/rustamova148/task-management.git
+   git clone https://github.com/rustamova148/Task-management-siesco-.git
    ```
 
 2. Əlavə olaraq `json-server`-i qlobal olaraq quraşdırın (əgər yoxdursa):
