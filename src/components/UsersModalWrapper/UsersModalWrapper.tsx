@@ -57,7 +57,7 @@ const handleAddUser = async (e: React.FormEvent<HTMLFormElement>) => {
     return; 
     }
     try{
-        const res = await fetch("https://task-management-siesco-13-backend.onrender.com/users", {
+        const res = await fetch("http://localhost:3001", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
