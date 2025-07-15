@@ -16,11 +16,7 @@ useEffect(() => {
 const storedUser = localStorage.getItem("user");
 if(storedUser){
   dispatch(setUser(JSON.parse(storedUser)));
-  if(JSON.parse(storedUser).role === 'admin'){
-  navigate('adminpanel');
-  }else{
   navigate('/adminpanel');
-  }
 }else{
   navigate('/signin');
 }
