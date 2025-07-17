@@ -43,7 +43,7 @@ Bu layihə sadə bir **tapşırıq idarəetmə** sistemidir. İstifadəçi rolla
 ## 👥 İstifadəçi Rolları
 
 ### 🔐 Admin
-
+(burada Adminin hesabı - nezrinrustamova454@gmail.com, 123456hj)
 - Qeydiyyatdan keçə bilər.
 - Yeni user-lər əlavə edə bilər.
 - Hər user üçün **task əlavə edə**, **edit edə**, **silə** bilər.
