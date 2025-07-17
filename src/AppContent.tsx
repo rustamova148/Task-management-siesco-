@@ -6,6 +6,7 @@ import { Routes, Route } from 'react-router-dom';
 import Signin from './pages/Signin/Signin';
 import Signup from './pages/Signup/Signup';
 import AdminPanel from './pages/AdminPanel/AdminPanel';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const AppContent = () => {
 
@@ -27,7 +28,9 @@ if(storedUser){
       <Routes>
         <Route path='signin' element={<Signin />} />
         <Route path='signup' element={<Signup />} />
-        <Route path='adminpanel' element={<AdminPanel />} />
+        <Route element={<ProtectedRoute />} >
+          <Route path='adminpanel' element={<AdminPanel />} />
+        </Route>
       </Routes>
     </div>
   )
